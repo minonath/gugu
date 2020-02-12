@@ -8,3 +8,10 @@
 from _how_to_create_a_window import create_mac_window
 create_mac_window()
 ```
+
+## 0.2 使用 OpenGL 渲染
+知识就是力量~~，法国就是培根~~
+```python
+from _use_opengl_program import create_mac_window
+create_mac_window()
+```
