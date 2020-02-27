@@ -3,52 +3,56 @@ import typing
 import math
 
 
+_c_type = type(ctypes.c_ubyte)
+
+
 class Array(object):
     __length__ = 1
 
-    def __init__(self, *args, array_length=0, array_type=ctypes.c_float):
-        if not array_length:
-            array_length = self.__length__
-        _element_size = ctypes.sizeof(array_type)
+    def __init__(self, *args, length=0, _type=ctypes.c_float):
+        if not length:
+            length = self.__length__
 
-        self._as_parameter_ = (array_type * array_length)(*args)
-
-        self._array_size = array_length * _element_size
-        self._array_length = array_length
-        self._array_element_size = _element_size
-        self._array_element_type = array_type
-
+        self.__values__ = (_type * length)(*args)
+        self.__length__ = length
+        self.__e_size__ = ctypes.sizeof(_type)
+        self.__b_size__ = length * self.__e_size__
+        self.__e_type__ = _type
         self.__string__ = self.__class__.__name__ + '(%s)' % ', '.join(
-            '{:.3f}' for _ in range(self._array_length))
+            '{:.3f}' for _ in range(length))
+
+    @property
+    def _as_parameter_(self):
+        return self.__values__
 
     def __getitem__(self, item):
-        return self._as_parameter_[item]
+        return self.__values__[item]
 
     def __setitem__(self, key, value):
-        self._as_parameter_[key] = value
+        self.__values__[key] = value
 
     def __repr__(self):
         return self.__string__.format(*self)
 
     def __call__(self, *args):
-        self._as_parameter_[:] = args
+        self.__values__[:] = args
         return self
 
     @property
     def array_length(self) -> int:
-        return self._array_length
+        return self.__length__
 
     @property
     def array_size(self) -> int:
-        return self._array_size
+        return self.__b_size__
 
     @property
-    def array_element_type(self) -> typing.Union:
-        return self._array_element_type
+    def array_element_type(self) -> _c_type:
+        return self.__e_type__
 
     @property
-    def array_element_size(self) -> typing.Union:
-        return self._array_element_size
+    def array_element_size(self) -> int:
+        return self.__e_size__
 
 
 class Matrix4(Array):
@@ -65,7 +69,7 @@ class Matrix4(Array):
         _width = _semi_x + _semi_x
         _height = _semi_y + _semi_y
         _depth = far - near
-
+        print(_semi_x, _semi_y)
         # [2] = (_semi_x + -_semi_x) / _width
         # [6] = (_semi_y + -_semi_y) / _height
         return (

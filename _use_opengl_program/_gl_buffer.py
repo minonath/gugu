@@ -182,7 +182,7 @@ class Buffer(object):
 
         if not result:
             result = Array(
-                array_length=length, array_type=self._buffer_element_type
+                length=length, _type=self._buffer_element_type
             )
 
         if result.array_element_type != ctypes.c_ubyte:
@@ -203,7 +203,7 @@ class Buffer(object):
             length = self._buffer_length - offset
 
         if not chunk:
-            chunk = Array(0, array_type=self._buffer_element_type)
+            chunk = Array(0, _type=self._buffer_element_type)
 
         _chunk_length = chunk.array_length
         _chunk_number, _exactly = divmod(length, _chunk_length)

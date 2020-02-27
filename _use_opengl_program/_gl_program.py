@@ -114,8 +114,8 @@ class _Uniform(object):
     @property
     def value(self):
         _getter = Array(  # 用于获取自身内容的缓存
-            array_length=self._uniform_length,
-            array_type=self._uniform_element_type
+            length=self._uniform_length,
+            _type=self._uniform_element_type
         )
         return tuple(self._uniform_get_value(_getter))
 

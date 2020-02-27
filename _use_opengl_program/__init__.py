@@ -162,11 +162,10 @@ class TestWindow(object):
                    GL_DYNAMIC_DRAW)
         print(b)
         m = Matrix4(1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6,
-                    array_type=ctypes.c_ubyte)
+                    _type=ctypes.c_ubyte)
         b.buffer_write(m)
         print(b.buffer_read())
-        b.buffer_clear(chunk=Array(0, 9, array_length=2,
-                                   array_type=ctypes.c_ubyte))
+        b.buffer_clear(chunk=Array(0, 9, length=2, _type=ctypes.c_ubyte))
         print(b.buffer_read())
 
     def gl_clear(self):

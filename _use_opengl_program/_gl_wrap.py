@@ -21,7 +21,7 @@ def bind_dynamic_library(lib, fallback=None):  # ver 0.2
 
         except AttributeError:  # 绑定失败，返回无效函数
             if fallback:
-                _func = fallback(name, restype, arg_types)
+                _func = fallback(name, restype, *arg_types)  # 这里写参错数数量
             else:
                 def _func(*args):  # 无法加载的函数，默认使用这个
                     print('<Error Func>', lib, name, args)
@@ -160,7 +160,7 @@ glAttachShader = Ext('glAttachShader', None, ctypes.c_uint, ctypes.c_uint)
 
 glCompileShader = Ext('glCompileShader', None, ctypes.c_uint)
 
-glCreateProgram = Ext('glCreateProgram', ctypes.c_uint, )
+glCreateProgram = Ext('glCreateProgram', ctypes.c_uint)
 
 glCreateShader = Ext('glCreateShader', ctypes.c_uint, ctypes.c_uint)
 
