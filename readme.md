@@ -26,3 +26,10 @@ create_mac_window()
 from _i_need_a_3d_library import Matrix4
 print(Matrix4.from_identity())
 ```
+
+## 0.4 完整的 OpenGL 绑定
+一杯茶一包烟 一行代码写一天
+```python
+from gu.graphic.gl_api.auto_wrap import compile_wrap_file
+compile_wrap_file()
+```
