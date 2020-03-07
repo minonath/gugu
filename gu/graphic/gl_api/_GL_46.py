@@ -25,13 +25,13 @@ GL_TRANSFORM_FEEDBACK_OVERFLOW = 0x82EC
 GL_TRANSFORM_FEEDBACK_STREAM_OVERFLOW = 0x82ED
 PFNGLSPECIALIZESHADERPROC = C(None, UInt, CharP, UInt, P(UInt), P(UInt))
 PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC = C(None, UInt, VoidP, Size, Int, Int)
-PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTPROC = C(None, UInt, UInt, VoidP, Size,
-                                            Int, Int)
+PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTPROC = C(
+    None, UInt, UInt, VoidP, Size, Int, Int)
 PFNGLPOLYGONOFFSETCLAMPPROC = C(None, Float, Float, Float)
-glSpecializeShader = E('glSpecializeShader', None, UInt, CharP, UInt, P(UInt),
-                       P(UInt))
-glMultiDrawArraysIndirectCount = E('glMultiDrawArraysIndirectCount', None,
-                                   UInt, VoidP, Size, Int, Int)
+glSpecializeShader = E(
+    'glSpecializeShader', None, UInt, CharP, UInt, P(UInt), P(UInt))
+glMultiDrawArraysIndirectCount = E(
+    'glMultiDrawArraysIndirectCount', None, UInt, VoidP, Size, Int, Int)
 glMultiDrawElementsIndirectCount = E('glMultiDrawElementsIndirectCount', None,
                                      UInt, UInt, VoidP, Size, Int, Int)
 glPolygonOffsetClamp = E('glPolygonOffsetClamp', None, Float, Float, Float)

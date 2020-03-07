@@ -34,35 +34,35 @@ GL_RGBA16 = 0x805B
 GL_VERTEX_ARRAY = 0x8074
 PFNGLDRAWARRAYSPROC = C(None, UInt, Int, Int)
 PFNGLDRAWELEMENTSPROC = C(None, UInt, Int, UInt, VoidP)
-PFNGLGETPOINTERVPROC = C(None, UInt, VoidP)
+PFNGLGETPOINTERVPROC = C(None, UInt, P(VoidP))
 PFNGLPOLYGONOFFSETPROC = C(None, Float, Float)
 PFNGLCOPYTEXIMAGE1DPROC = C(None, UInt, Int, UInt, Int, Int, Int, Int)
 PFNGLCOPYTEXIMAGE2DPROC = C(None, UInt, Int, UInt, Int, Int, Int, Int, Int)
 PFNGLCOPYTEXSUBIMAGE1DPROC = C(None, UInt, Int, Int, Int, Int, Int)
 PFNGLCOPYTEXSUBIMAGE2DPROC = C(None, UInt, Int, Int, Int, Int, Int, Int, Int)
 PFNGLTEXSUBIMAGE1DPROC = C(None, UInt, Int, Int, Int, UInt, UInt, VoidP)
-PFNGLTEXSUBIMAGE2DPROC = C(None, UInt, Int, Int, Int, Int, Int, UInt, UInt,
-                           VoidP)
+PFNGLTEXSUBIMAGE2DPROC = C(
+    None, UInt, Int, Int, Int, Int, Int, UInt, UInt, VoidP)
 PFNGLBINDTEXTUREPROC = C(None, UInt, UInt)
 PFNGLDELETETEXTURESPROC = C(None, Int, P(UInt))
 PFNGLGENTEXTURESPROC = C(None, Int, P(UInt))
 PFNGLISTEXTUREPROC = C(UByte, UInt)
 glDrawArrays = E('glDrawArrays', None, UInt, Int, Int)
 glDrawElements = E('glDrawElements', None, UInt, Int, UInt, VoidP)
-glGetPointerv = E('glGetPointerv', None, UInt, VoidP)
+glGetPointerv = E('glGetPointerv', None, UInt, P(VoidP))
 glPolygonOffset = E('glPolygonOffset', None, Float, Float)
-glCopyTexImage1D = E('glCopyTexImage1D', None, UInt, Int, UInt, Int, Int, Int,
-                     Int)
-glCopyTexImage2D = E('glCopyTexImage2D', None, UInt, Int, UInt, Int, Int, Int,
-                     Int, Int)
-glCopyTexSubImage1D = E('glCopyTexSubImage1D', None, UInt, Int, Int, Int, Int,
-                        Int)
-glCopyTexSubImage2D = E('glCopyTexSubImage2D', None, UInt, Int, Int, Int, Int,
-                        Int, Int, Int)
-glTexSubImage1D = E('glTexSubImage1D', None, UInt, Int, Int, Int, UInt, UInt,
-                    VoidP)
-glTexSubImage2D = E('glTexSubImage2D', None, UInt, Int, Int, Int, Int, Int,
-                    UInt, UInt, VoidP)
+glCopyTexImage1D = E(
+    'glCopyTexImage1D', None, UInt, Int, UInt, Int, Int, Int, Int)
+glCopyTexImage2D = E(
+    'glCopyTexImage2D', None, UInt, Int, UInt, Int, Int, Int, Int, Int)
+glCopyTexSubImage1D = E(
+    'glCopyTexSubImage1D', None, UInt, Int, Int, Int, Int, Int)
+glCopyTexSubImage2D = E(
+    'glCopyTexSubImage2D', None, UInt, Int, Int, Int, Int, Int, Int, Int)
+glTexSubImage1D = E(
+    'glTexSubImage1D', None, UInt, Int, Int, Int, UInt, UInt, VoidP)
+glTexSubImage2D = E(
+    'glTexSubImage2D', None, UInt, Int, Int, Int, Int, Int, UInt, UInt, VoidP)
 glBindTexture = E('glBindTexture', None, UInt, UInt)
 glDeleteTextures = E('glDeleteTextures', None, Int, P(UInt))
 glGenTextures = E('glGenTextures', None, Int, P(UInt))

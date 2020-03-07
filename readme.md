@@ -33,3 +33,10 @@ print(Matrix4.from_identity())
 from gu.graphic.gl_api.auto_wrap import compile_wrap_file
 compile_wrap_file()
 ```
+
+## 0.5 修正窗口键盘和一些问题
+Rabbit Tank BestMatch! Are You Ready? ~~No~~
+```python
+from gu.window.test_window import test
+test()
+```

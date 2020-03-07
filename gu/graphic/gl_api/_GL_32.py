@@ -66,12 +66,12 @@ GL_MAX_COLOR_TEXTURE_SAMPLES = 0x910E
 GL_MAX_DEPTH_TEXTURE_SAMPLES = 0x910F
 GL_MAX_INTEGER_SAMPLES = 0x9110
 PFNGLDRAWELEMENTSBASEVERTEXPROC = C(None, UInt, Int, UInt, VoidP, Int)
-PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC = C(None, UInt, UInt, UInt, Int, UInt,
-                                         VoidP, Int)
-PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXPROC = C(None, UInt, Int, UInt, VoidP,
-                                             Int, Int)
-PFNGLMULTIDRAWELEMENTSBASEVERTEXPROC = C(None, UInt, P(Int), UInt, VoidP, Int,
-                                         P(Int))
+PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC = C(
+    None, UInt, UInt, UInt, Int, UInt, VoidP, Int)
+PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXPROC = C(
+    None, UInt, Int, UInt, VoidP, Int, Int)
+PFNGLMULTIDRAWELEMENTSBASEVERTEXPROC = C(
+    None, UInt, P(Int), UInt, P(VoidP), Int, P(Int))
 PFNGLPROVOKINGVERTEXPROC = C(None, UInt)
 PFNGLFENCESYNCPROC = C(GLSync, UInt, UInt)
 PFNGLISSYNCPROC = C(UByte, GLSync)
@@ -84,18 +84,18 @@ PFNGLGETINTEGER64I_VPROC = C(None, UInt, UInt, P(Int64))
 PFNGLGETBUFFERPARAMETERI64VPROC = C(None, UInt, UInt, P(Int64))
 PFNGLFRAMEBUFFERTEXTUREPROC = C(None, UInt, UInt, UInt, Int)
 PFNGLTEXIMAGE2DMULTISAMPLEPROC = C(None, UInt, Int, UInt, Int, Int, UByte)
-PFNGLTEXIMAGE3DMULTISAMPLEPROC = C(None, UInt, Int, UInt, Int, Int, Int,
-                                   UByte)
+PFNGLTEXIMAGE3DMULTISAMPLEPROC = C(
+    None, UInt, Int, UInt, Int, Int, Int, UByte)
 PFNGLGETMULTISAMPLEFVPROC = C(None, UInt, UInt, P(Float))
 PFNGLSAMPLEMASKIPROC = C(None, UInt, UInt)
-glDrawElementsBaseVertex = E('glDrawElementsBaseVertex', None, UInt, Int,
-                             UInt, VoidP, Int)
+glDrawElementsBaseVertex = E(
+    'glDrawElementsBaseVertex', None, UInt, Int, UInt, VoidP, Int)
 glDrawRangeElementsBaseVertex = E('glDrawRangeElementsBaseVertex', None, UInt,
                                   UInt, UInt, Int, UInt, VoidP, Int)
 glDrawElementsInstancedBaseVertex = E('glDrawElementsInstancedBaseVertex',
                                       None, UInt, Int, UInt, VoidP, Int, Int)
 glMultiDrawElementsBaseVertex = E('glMultiDrawElementsBaseVertex', None, UInt,
-                                  P(Int), UInt, VoidP, Int, P(Int))
+                                  P(Int), UInt, P(VoidP), Int, P(Int))
 glProvokingVertex = E('glProvokingVertex', None, UInt)
 glFenceSync = E('glFenceSync', GLSync, UInt, UInt)
 glIsSync = E('glIsSync', UByte, GLSync)
@@ -105,13 +105,13 @@ glWaitSync = E('glWaitSync', None, GLSync, UInt, UInt64)
 glGetInteger64v = E('glGetInteger64v', None, UInt, P(Int64))
 glGetSynciv = E('glGetSynciv', None, GLSync, UInt, Int, P(Int), P(Int))
 glGetInteger64i_v = E('glGetInteger64i_v', None, UInt, UInt, P(Int64))
-glGetBufferParameteri64v = E('glGetBufferParameteri64v', None, UInt, UInt,
-                             P(Int64))
+glGetBufferParameteri64v = E(
+    'glGetBufferParameteri64v', None, UInt, UInt, P(Int64))
 glFramebufferTexture = E('glFramebufferTexture', None, UInt, UInt, UInt, Int)
-glTexImage2DMultisample = E('glTexImage2DMultisample', None, UInt, Int, UInt,
-                            Int, Int, UByte)
-glTexImage3DMultisample = E('glTexImage3DMultisample', None, UInt, Int, UInt,
-                            Int, Int, Int, UByte)
+glTexImage2DMultisample = E(
+    'glTexImage2DMultisample', None, UInt, Int, UInt, Int, Int, UByte)
+glTexImage3DMultisample = E(
+    'glTexImage3DMultisample', None, UInt, Int, UInt, Int, Int, Int, UByte)
 glGetMultisamplefv = E('glGetMultisamplefv', None, UInt, UInt, P(Float))
 glSampleMaski = E('glSampleMaski', None, UInt, UInt)
 

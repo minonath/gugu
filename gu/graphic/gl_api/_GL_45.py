@@ -36,15 +36,15 @@ PFNGLNAMEDBUFFERDATAPROC = C(None, UInt, Size, VoidP, UInt)
 PFNGLNAMEDBUFFERSUBDATAPROC = C(None, UInt, Size, Size, VoidP)
 PFNGLCOPYNAMEDBUFFERSUBDATAPROC = C(None, UInt, UInt, Size, Size, Size)
 PFNGLCLEARNAMEDBUFFERDATAPROC = C(None, UInt, UInt, UInt, UInt, VoidP)
-PFNGLCLEARNAMEDBUFFERSUBDATAPROC = C(None, UInt, UInt, Size, Size, UInt, UInt,
-                                     VoidP)
+PFNGLCLEARNAMEDBUFFERSUBDATAPROC = C(
+    None, UInt, UInt, Size, Size, UInt, UInt, VoidP)
 PFNGLMAPNAMEDBUFFERPROC = C(VoidP, UInt, UInt)
 PFNGLMAPNAMEDBUFFERRANGEPROC = C(VoidP, UInt, Size, Size, UInt)
 PFNGLUNMAPNAMEDBUFFERPROC = C(UByte, UInt)
 PFNGLFLUSHMAPPEDNAMEDBUFFERRANGEPROC = C(None, UInt, Size, Size)
 PFNGLGETNAMEDBUFFERPARAMETERIVPROC = C(None, UInt, UInt, P(Int))
 PFNGLGETNAMEDBUFFERPARAMETERI64VPROC = C(None, UInt, UInt, P(Int64))
-PFNGLGETNAMEDBUFFERPOINTERVPROC = C(None, UInt, UInt, VoidP)
+PFNGLGETNAMEDBUFFERPOINTERVPROC = C(None, UInt, UInt, P(VoidP))
 PFNGLGETNAMEDBUFFERSUBDATAPROC = C(None, UInt, Size, Size, VoidP)
 PFNGLCREATEFRAMEBUFFERSPROC = C(None, Int, P(UInt))
 PFNGLNAMEDFRAMEBUFFERRENDERBUFFERPROC = C(None, UInt, UInt, UInt, UInt)
@@ -55,22 +55,22 @@ PFNGLNAMEDFRAMEBUFFERDRAWBUFFERPROC = C(None, UInt, UInt)
 PFNGLNAMEDFRAMEBUFFERDRAWBUFFERSPROC = C(None, UInt, Int, P(UInt))
 PFNGLNAMEDFRAMEBUFFERREADBUFFERPROC = C(None, UInt, UInt)
 PFNGLINVALIDATENAMEDFRAMEBUFFERDATAPROC = C(None, UInt, Int, P(UInt))
-PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC = C(None, UInt, Int, P(UInt), Int,
-                                               Int, Int, Int)
+PFNGLINVALIDATENAMEDFRAMEBUFFERSUBDATAPROC = C(
+    None, UInt, Int, P(UInt), Int, Int, Int, Int)
 PFNGLCLEARNAMEDFRAMEBUFFERIVPROC = C(None, UInt, UInt, Int, P(Int))
 PFNGLCLEARNAMEDFRAMEBUFFERUIVPROC = C(None, UInt, UInt, Int, P(UInt))
 PFNGLCLEARNAMEDFRAMEBUFFERFVPROC = C(None, UInt, UInt, Int, P(Float))
 PFNGLCLEARNAMEDFRAMEBUFFERFIPROC = C(None, UInt, UInt, Int, Float, Int)
-PFNGLBLITNAMEDFRAMEBUFFERPROC = C(None, UInt, UInt, Int, Int, Int, Int, Int,
-                                  Int, Int, Int, UInt, UInt)
+PFNGLBLITNAMEDFRAMEBUFFERPROC = C(
+    None, UInt, UInt, Int, Int, Int, Int, Int, Int, Int, Int, UInt, UInt)
 PFNGLCHECKNAMEDFRAMEBUFFERSTATUSPROC = C(UInt, UInt, UInt)
 PFNGLGETNAMEDFRAMEBUFFERPARAMETERIVPROC = C(None, UInt, UInt, P(Int))
-PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVPROC = C(None, UInt, UInt, UInt,
-                                                      P(Int))
+PFNGLGETNAMEDFRAMEBUFFERATTACHMENTPARAMETERIVPROC = C(
+    None, UInt, UInt, UInt, P(Int))
 PFNGLCREATERENDERBUFFERSPROC = C(None, Int, P(UInt))
 PFNGLNAMEDRENDERBUFFERSTORAGEPROC = C(None, UInt, UInt, Int, Int)
-PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEPROC = C(None, UInt, Int, UInt, Int,
-                                                 Int)
+PFNGLNAMEDRENDERBUFFERSTORAGEMULTISAMPLEPROC = C(
+    None, UInt, Int, UInt, Int, Int)
 PFNGLGETNAMEDRENDERBUFFERPARAMETERIVPROC = C(None, UInt, UInt, P(Int))
 PFNGLCREATETEXTURESPROC = C(None, UInt, Int, P(UInt))
 PFNGLTEXTUREBUFFERPROC = C(None, UInt, UInt, UInt)
@@ -78,26 +78,26 @@ PFNGLTEXTUREBUFFERRANGEPROC = C(None, UInt, UInt, UInt, Size, Size)
 PFNGLTEXTURESTORAGE1DPROC = C(None, UInt, Int, UInt, Int)
 PFNGLTEXTURESTORAGE2DPROC = C(None, UInt, Int, UInt, Int, Int)
 PFNGLTEXTURESTORAGE3DPROC = C(None, UInt, Int, UInt, Int, Int, Int)
-PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC = C(None, UInt, Int, UInt, Int, Int,
-                                         UByte)
-PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC = C(None, UInt, Int, UInt, Int, Int, Int,
-                                         UByte)
+PFNGLTEXTURESTORAGE2DMULTISAMPLEPROC = C(
+    None, UInt, Int, UInt, Int, Int, UByte)
+PFNGLTEXTURESTORAGE3DMULTISAMPLEPROC = C(
+    None, UInt, Int, UInt, Int, Int, Int, UByte)
 PFNGLTEXTURESUBIMAGE1DPROC = C(None, UInt, Int, Int, Int, UInt, UInt, VoidP)
-PFNGLTEXTURESUBIMAGE2DPROC = C(None, UInt, Int, Int, Int, Int, Int, UInt,
-                               UInt, VoidP)
-PFNGLTEXTURESUBIMAGE3DPROC = C(None, UInt, Int, Int, Int, Int, Int, Int, Int,
-                               UInt, UInt, VoidP)
-PFNGLCOMPRESSEDTEXTURESUBIMAGE1DPROC = C(None, UInt, Int, Int, Int, UInt, Int,
-                                         VoidP)
-PFNGLCOMPRESSEDTEXTURESUBIMAGE2DPROC = C(None, UInt, Int, Int, Int, Int, Int,
-                                         UInt, Int, VoidP)
-PFNGLCOMPRESSEDTEXTURESUBIMAGE3DPROC = C(None, UInt, Int, Int, Int, Int, Int,
-                                         Int, Int, UInt, Int, VoidP)
+PFNGLTEXTURESUBIMAGE2DPROC = C(
+    None, UInt, Int, Int, Int, Int, Int, UInt, UInt, VoidP)
+PFNGLTEXTURESUBIMAGE3DPROC = C(
+    None, UInt, Int, Int, Int, Int, Int, Int, Int, UInt, UInt, VoidP)
+PFNGLCOMPRESSEDTEXTURESUBIMAGE1DPROC = C(
+    None, UInt, Int, Int, Int, UInt, Int, VoidP)
+PFNGLCOMPRESSEDTEXTURESUBIMAGE2DPROC = C(
+    None, UInt, Int, Int, Int, Int, Int, UInt, Int, VoidP)
+PFNGLCOMPRESSEDTEXTURESUBIMAGE3DPROC = C(
+    None, UInt, Int, Int, Int, Int, Int, Int, Int, UInt, Int, VoidP)
 PFNGLCOPYTEXTURESUBIMAGE1DPROC = C(None, UInt, Int, Int, Int, Int, Int)
-PFNGLCOPYTEXTURESUBIMAGE2DPROC = C(None, UInt, Int, Int, Int, Int, Int, Int,
-                                   Int)
-PFNGLCOPYTEXTURESUBIMAGE3DPROC = C(None, UInt, Int, Int, Int, Int, Int, Int,
-                                   Int, Int)
+PFNGLCOPYTEXTURESUBIMAGE2DPROC = C(
+    None, UInt, Int, Int, Int, Int, Int, Int, Int)
+PFNGLCOPYTEXTURESUBIMAGE3DPROC = C(
+    None, UInt, Int, Int, Int, Int, Int, Int, Int, Int)
 PFNGLTEXTUREPARAMETERFPROC = C(None, UInt, UInt, Float)
 PFNGLTEXTUREPARAMETERFVPROC = C(None, UInt, UInt, P(Float))
 PFNGLTEXTUREPARAMETERIPROC = C(None, UInt, UInt, Int)
@@ -119,8 +119,8 @@ PFNGLDISABLEVERTEXARRAYATTRIBPROC = C(None, UInt, UInt)
 PFNGLENABLEVERTEXARRAYATTRIBPROC = C(None, UInt, UInt)
 PFNGLVERTEXARRAYELEMENTBUFFERPROC = C(None, UInt, UInt)
 PFNGLVERTEXARRAYVERTEXBUFFERPROC = C(None, UInt, UInt, UInt, Size, Int)
-PFNGLVERTEXARRAYVERTEXBUFFERSPROC = C(None, UInt, UInt, Int, P(UInt), P(Size),
-                                      P(Int))
+PFNGLVERTEXARRAYVERTEXBUFFERSPROC = C(
+    None, UInt, UInt, Int, P(UInt), P(Size), P(Int))
 PFNGLVERTEXARRAYATTRIBBINDINGPROC = C(None, UInt, UInt, UInt)
 PFNGLVERTEXARRAYATTRIBFORMATPROC = C(None, UInt, UInt, Int, UInt, UByte, UInt)
 PFNGLVERTEXARRAYATTRIBIFORMATPROC = C(None, UInt, UInt, Int, UInt, UInt)
@@ -137,10 +137,10 @@ PFNGLGETQUERYBUFFEROBJECTIVPROC = C(None, UInt, UInt, UInt, Size)
 PFNGLGETQUERYBUFFEROBJECTUI64VPROC = C(None, UInt, UInt, UInt, Size)
 PFNGLGETQUERYBUFFEROBJECTUIVPROC = C(None, UInt, UInt, UInt, Size)
 PFNGLMEMORYBARRIERBYREGIONPROC = C(None, UInt)
-PFNGLGETTEXTURESUBIMAGEPROC = C(None, UInt, Int, Int, Int, Int, Int, Int, Int,
-                                UInt, UInt, Int, VoidP)
-PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC = C(None, UInt, Int, Int, Int, Int, Int,
-                                          Int, Int, Int, VoidP)
+PFNGLGETTEXTURESUBIMAGEPROC = C(
+    None, UInt, Int, Int, Int, Int, Int, Int, Int, UInt, UInt, Int, VoidP)
+PFNGLGETCOMPRESSEDTEXTURESUBIMAGEPROC = C(
+    None, UInt, Int, Int, Int, Int, Int, Int, Int, Int, VoidP)
 PFNGLGETGRAPHICSRESETSTATUSPROC = C(UInt)
 PFNGLGETNCOMPRESSEDTEXIMAGEPROC = C(None, UInt, Int, Int, VoidP)
 PFNGLGETNTEXIMAGEPROC = C(None, UInt, Int, UInt, UInt, Int, VoidP)
@@ -151,102 +151,102 @@ PFNGLGETNUNIFORMUIVPROC = C(None, UInt, Int, Int, P(UInt))
 PFNGLREADNPIXELSPROC = C(None, Int, Int, Int, Int, UInt, UInt, Int, VoidP)
 PFNGLTEXTUREBARRIERPROC = C(None)
 glClipControl = E('glClipControl', None, UInt, UInt)
-glCreateTransformFeedbacks = E('glCreateTransformFeedbacks', None, Int,
-                               P(UInt))
-glTransformFeedbackBufferBase = E('glTransformFeedbackBufferBase', None, UInt,
-                                  UInt, UInt)
-glTransformFeedbackBufferRange = E('glTransformFeedbackBufferRange', None,
-                                   UInt, UInt, UInt, Size, Size)
-glGetTransformFeedbackiv = E('glGetTransformFeedbackiv', None, UInt, UInt,
-                             P(Int))
-glGetTransformFeedbacki_v = E('glGetTransformFeedbacki_v', None, UInt, UInt,
-                              UInt, P(Int))
-glGetTransformFeedbacki64_v = E('glGetTransformFeedbacki64_v', None, UInt,
-                                UInt, UInt, P(Int64))
+glCreateTransformFeedbacks = E(
+    'glCreateTransformFeedbacks', None, Int, P(UInt))
+glTransformFeedbackBufferBase = E(
+    'glTransformFeedbackBufferBase', None, UInt, UInt, UInt)
+glTransformFeedbackBufferRange = E(
+    'glTransformFeedbackBufferRange', None, UInt, UInt, UInt, Size, Size)
+glGetTransformFeedbackiv = E(
+    'glGetTransformFeedbackiv', None, UInt, UInt, P(Int))
+glGetTransformFeedbacki_v = E(
+    'glGetTransformFeedbacki_v', None, UInt, UInt, UInt, P(Int))
+glGetTransformFeedbacki64_v = E(
+    'glGetTransformFeedbacki64_v', None, UInt, UInt, UInt, P(Int64))
 glCreateBuffers = E('glCreateBuffers', None, Int, P(UInt))
-glNamedBufferStorage = E('glNamedBufferStorage', None, UInt, Size, VoidP,
-                         UInt)
+glNamedBufferStorage = E(
+    'glNamedBufferStorage', None, UInt, Size, VoidP, UInt)
 glNamedBufferData = E('glNamedBufferData', None, UInt, Size, VoidP, UInt)
-glNamedBufferSubData = E('glNamedBufferSubData', None, UInt, Size, Size,
-                         VoidP)
-glCopyNamedBufferSubData = E('glCopyNamedBufferSubData', None, UInt, UInt,
-                             Size, Size, Size)
-glClearNamedBufferData = E('glClearNamedBufferData', None, UInt, UInt, UInt,
-                           UInt, VoidP)
+glNamedBufferSubData = E(
+    'glNamedBufferSubData', None, UInt, Size, Size, VoidP)
+glCopyNamedBufferSubData = E(
+    'glCopyNamedBufferSubData', None, UInt, UInt, Size, Size, Size)
+glClearNamedBufferData = E(
+    'glClearNamedBufferData', None, UInt, UInt, UInt, UInt, VoidP)
 glClearNamedBufferSubData = E('glClearNamedBufferSubData', None, UInt, UInt,
                               Size, Size, UInt, UInt, VoidP)
 glMapNamedBuffer = E('glMapNamedBuffer', VoidP, UInt, UInt)
-glMapNamedBufferRange = E('glMapNamedBufferRange', VoidP, UInt, Size, Size,
-                          UInt)
+glMapNamedBufferRange = E(
+    'glMapNamedBufferRange', VoidP, UInt, Size, Size, UInt)
 glUnmapNamedBuffer = E('glUnmapNamedBuffer', UByte, UInt)
-glFlushMappedNamedBufferRange = E('glFlushMappedNamedBufferRange', None, UInt,
-                                  Size, Size)
-glGetNamedBufferParameteriv = E('glGetNamedBufferParameteriv', None, UInt,
-                                UInt, P(Int))
-glGetNamedBufferParameteri64v = E('glGetNamedBufferParameteri64v', None, UInt,
-                                  UInt, P(Int64))
-glGetNamedBufferPointerv = E('glGetNamedBufferPointerv', None, UInt, UInt,
-                             VoidP)
-glGetNamedBufferSubData = E('glGetNamedBufferSubData', None, UInt, Size, Size,
-                            VoidP)
+glFlushMappedNamedBufferRange = E(
+    'glFlushMappedNamedBufferRange', None, UInt, Size, Size)
+glGetNamedBufferParameteriv = E(
+    'glGetNamedBufferParameteriv', None, UInt, UInt, P(Int))
+glGetNamedBufferParameteri64v = E(
+    'glGetNamedBufferParameteri64v', None, UInt, UInt, P(Int64))
+glGetNamedBufferPointerv = E(
+    'glGetNamedBufferPointerv', None, UInt, UInt, P(VoidP))
+glGetNamedBufferSubData = E(
+    'glGetNamedBufferSubData', None, UInt, Size, Size, VoidP)
 glCreateFramebuffers = E('glCreateFramebuffers', None, Int, P(UInt))
-glNamedFramebufferRenderbuffer = E('glNamedFramebufferRenderbuffer', None,
-                                   UInt, UInt, UInt, UInt)
-glNamedFramebufferParameteri = E('glNamedFramebufferParameteri', None, UInt,
-                                 UInt, Int)
-glNamedFramebufferTexture = E('glNamedFramebufferTexture', None, UInt, UInt,
-                              UInt, Int)
-glNamedFramebufferTextureLayer = E('glNamedFramebufferTextureLayer', None,
-                                   UInt, UInt, UInt, Int, Int)
-glNamedFramebufferDrawBuffer = E('glNamedFramebufferDrawBuffer', None, UInt,
-                                 UInt)
-glNamedFramebufferDrawBuffers = E('glNamedFramebufferDrawBuffers', None, UInt,
-                                  Int, P(UInt))
-glNamedFramebufferReadBuffer = E('glNamedFramebufferReadBuffer', None, UInt,
-                                 UInt)
-glInvalidateNamedFramebufferData = E('glInvalidateNamedFramebufferData', None,
-                                     UInt, Int, P(UInt))
-glInvalidateNamedFramebufferSubData = E('glInvalidateNamedFramebufferSubData',
-                                        None, UInt, Int, P(UInt), Int, Int,
-                                        Int, Int)
-glClearNamedFramebufferiv = E('glClearNamedFramebufferiv', None, UInt, UInt,
-                              Int, P(Int))
-glClearNamedFramebufferuiv = E('glClearNamedFramebufferuiv', None, UInt, UInt,
-                               Int, P(UInt))
-glClearNamedFramebufferfv = E('glClearNamedFramebufferfv', None, UInt, UInt,
-                              Int, P(Float))
-glClearNamedFramebufferfi = E('glClearNamedFramebufferfi', None, UInt, UInt,
-                              Int, Float, Int)
+glNamedFramebufferRenderbuffer = E(
+    'glNamedFramebufferRenderbuffer', None, UInt, UInt, UInt, UInt)
+glNamedFramebufferParameteri = E(
+    'glNamedFramebufferParameteri', None, UInt, UInt, Int)
+glNamedFramebufferTexture = E(
+    'glNamedFramebufferTexture', None, UInt, UInt, UInt, Int)
+glNamedFramebufferTextureLayer = E(
+    'glNamedFramebufferTextureLayer', None, UInt, UInt, UInt, Int, Int)
+glNamedFramebufferDrawBuffer = E(
+    'glNamedFramebufferDrawBuffer', None, UInt, UInt)
+glNamedFramebufferDrawBuffers = E(
+    'glNamedFramebufferDrawBuffers', None, UInt, Int, P(UInt))
+glNamedFramebufferReadBuffer = E(
+    'glNamedFramebufferReadBuffer', None, UInt, UInt)
+glInvalidateNamedFramebufferData = E(
+    'glInvalidateNamedFramebufferData', None, UInt, Int, P(UInt))
+glInvalidateNamedFramebufferSubData = E(
+    'glInvalidateNamedFramebufferSubData',
+    None, UInt, Int, P(UInt), Int, Int, Int, Int)
+glClearNamedFramebufferiv = E(
+    'glClearNamedFramebufferiv', None, UInt, UInt, Int, P(Int))
+glClearNamedFramebufferuiv = E(
+    'glClearNamedFramebufferuiv', None, UInt, UInt, Int, P(UInt))
+glClearNamedFramebufferfv = E(
+    'glClearNamedFramebufferfv', None, UInt, UInt, Int, P(Float))
+glClearNamedFramebufferfi = E(
+    'glClearNamedFramebufferfi', None, UInt, UInt, Int, Float, Int)
 glBlitNamedFramebuffer = E('glBlitNamedFramebuffer', None, UInt, UInt, Int,
                            Int, Int, Int, Int, Int, Int, Int, UInt, UInt)
-glCheckNamedFramebufferStatus = E('glCheckNamedFramebufferStatus', UInt, UInt,
-                                  UInt)
-glGetNamedFramebufferParameteriv = E('glGetNamedFramebufferParameteriv', None,
-                                     UInt, UInt, P(Int))
+glCheckNamedFramebufferStatus = E(
+    'glCheckNamedFramebufferStatus', UInt, UInt, UInt)
+glGetNamedFramebufferParameteriv = E(
+    'glGetNamedFramebufferParameteriv', None, UInt, UInt, P(Int))
 glGetNamedFramebufferAttachmentParameteriv = E(
-    'glGetNamedFramebufferAttachmentParameteriv', None, UInt, UInt, UInt,
-    P(Int))
+    'glGetNamedFramebufferAttachmentParameteriv',
+    None, UInt, UInt, UInt, P(Int))
 glCreateRenderbuffers = E('glCreateRenderbuffers', None, Int, P(UInt))
-glNamedRenderbufferStorage = E('glNamedRenderbufferStorage', None, UInt, UInt,
-                               Int, Int)
+glNamedRenderbufferStorage = E(
+    'glNamedRenderbufferStorage', None, UInt, UInt, Int, Int)
 glNamedRenderbufferStorageMultisample = E(
     'glNamedRenderbufferStorageMultisample', None, UInt, Int, UInt, Int, Int)
-glGetNamedRenderbufferParameteriv = E('glGetNamedRenderbufferParameteriv',
-                                      None, UInt, UInt, P(Int))
+glGetNamedRenderbufferParameteriv = E(
+    'glGetNamedRenderbufferParameteriv', None, UInt, UInt, P(Int))
 glCreateTextures = E('glCreateTextures', None, UInt, Int, P(UInt))
 glTextureBuffer = E('glTextureBuffer', None, UInt, UInt, UInt)
-glTextureBufferRange = E('glTextureBufferRange', None, UInt, UInt, UInt, Size,
-                         Size)
+glTextureBufferRange = E(
+    'glTextureBufferRange', None, UInt, UInt, UInt, Size, Size)
 glTextureStorage1D = E('glTextureStorage1D', None, UInt, Int, UInt, Int)
 glTextureStorage2D = E('glTextureStorage2D', None, UInt, Int, UInt, Int, Int)
-glTextureStorage3D = E('glTextureStorage3D', None, UInt, Int, UInt, Int, Int,
-                       Int)
-glTextureStorage2DMultisample = E('glTextureStorage2DMultisample', None, UInt,
-                                  Int, UInt, Int, Int, UByte)
+glTextureStorage3D = E(
+    'glTextureStorage3D', None, UInt, Int, UInt, Int, Int, Int)
+glTextureStorage2DMultisample = E(
+    'glTextureStorage2DMultisample', None, UInt, Int, UInt, Int, Int, UByte)
 glTextureStorage3DMultisample = E('glTextureStorage3DMultisample', None, UInt,
                                   Int, UInt, Int, Int, Int, UByte)
-glTextureSubImage1D = E('glTextureSubImage1D', None, UInt, Int, Int, Int,
-                        UInt, UInt, VoidP)
+glTextureSubImage1D = E(
+    'glTextureSubImage1D', None, UInt, Int, Int, Int, UInt, UInt, VoidP)
 glTextureSubImage2D = E('glTextureSubImage2D', None, UInt, Int, Int, Int, Int,
                         Int, UInt, UInt, VoidP)
 glTextureSubImage3D = E('glTextureSubImage3D', None, UInt, Int, Int, Int, Int,
@@ -255,90 +255,90 @@ glCompressedTextureSubImage1D = E('glCompressedTextureSubImage1D', None, UInt,
                                   Int, Int, Int, UInt, Int, VoidP)
 glCompressedTextureSubImage2D = E('glCompressedTextureSubImage2D', None, UInt,
                                   Int, Int, Int, Int, Int, UInt, Int, VoidP)
-glCompressedTextureSubImage3D = E('glCompressedTextureSubImage3D', None, UInt,
-                                  Int, Int, Int, Int, Int, Int, Int, UInt,
-                                  Int, VoidP)
-glCopyTextureSubImage1D = E('glCopyTextureSubImage1D', None, UInt, Int, Int,
-                            Int, Int, Int)
-glCopyTextureSubImage2D = E('glCopyTextureSubImage2D', None, UInt, Int, Int,
-                            Int, Int, Int, Int, Int)
+glCompressedTextureSubImage3D = E(
+    'glCompressedTextureSubImage3D',
+    None, UInt, Int, Int, Int, Int, Int, Int, Int, UInt, Int, VoidP)
+glCopyTextureSubImage1D = E(
+    'glCopyTextureSubImage1D', None, UInt, Int, Int, Int, Int, Int)
+glCopyTextureSubImage2D = E(
+    'glCopyTextureSubImage2D', None, UInt, Int, Int, Int, Int, Int, Int, Int)
 glCopyTextureSubImage3D = E('glCopyTextureSubImage3D', None, UInt, Int, Int,
                             Int, Int, Int, Int, Int, Int)
 glTextureParameterf = E('glTextureParameterf', None, UInt, UInt, Float)
 glTextureParameterfv = E('glTextureParameterfv', None, UInt, UInt, P(Float))
 glTextureParameteri = E('glTextureParameteri', None, UInt, UInt, Int)
 glTextureParameterIiv = E('glTextureParameterIiv', None, UInt, UInt, P(Int))
-glTextureParameterIuiv = E('glTextureParameterIuiv', None, UInt, UInt,
-                           P(UInt))
+glTextureParameterIuiv = E(
+    'glTextureParameterIuiv', None, UInt, UInt, P(UInt))
 glTextureParameteriv = E('glTextureParameteriv', None, UInt, UInt, P(Int))
 glGenerateTextureMipmap = E('glGenerateTextureMipmap', None, UInt)
 glBindTextureUnit = E('glBindTextureUnit', None, UInt, UInt)
-glGetTextureImage = E('glGetTextureImage', None, UInt, Int, UInt, UInt, Int,
-                      VoidP)
-glGetCompressedTextureImage = E('glGetCompressedTextureImage', None, UInt,
-                                Int, Int, VoidP)
-glGetTextureLevelParameterfv = E('glGetTextureLevelParameterfv', None, UInt,
-                                 Int, UInt, P(Float))
-glGetTextureLevelParameteriv = E('glGetTextureLevelParameteriv', None, UInt,
-                                 Int, UInt, P(Int))
-glGetTextureParameterfv = E('glGetTextureParameterfv', None, UInt, UInt,
-                            P(Float))
-glGetTextureParameterIiv = E('glGetTextureParameterIiv', None, UInt, UInt,
-                             P(Int))
-glGetTextureParameterIuiv = E('glGetTextureParameterIuiv', None, UInt, UInt,
-                              P(UInt))
-glGetTextureParameteriv = E('glGetTextureParameteriv', None, UInt, UInt,
-                            P(Int))
+glGetTextureImage = E(
+    'glGetTextureImage', None, UInt, Int, UInt, UInt, Int, VoidP)
+glGetCompressedTextureImage = E(
+    'glGetCompressedTextureImage', None, UInt, Int, Int, VoidP)
+glGetTextureLevelParameterfv = E(
+    'glGetTextureLevelParameterfv', None, UInt, Int, UInt, P(Float))
+glGetTextureLevelParameteriv = E(
+    'glGetTextureLevelParameteriv', None, UInt, Int, UInt, P(Int))
+glGetTextureParameterfv = E(
+    'glGetTextureParameterfv', None, UInt, UInt, P(Float))
+glGetTextureParameterIiv = E(
+    'glGetTextureParameterIiv', None, UInt, UInt, P(Int))
+glGetTextureParameterIuiv = E(
+    'glGetTextureParameterIuiv', None, UInt, UInt, P(UInt))
+glGetTextureParameteriv = E(
+    'glGetTextureParameteriv', None, UInt, UInt, P(Int))
 glCreateVertexArrays = E('glCreateVertexArrays', None, Int, P(UInt))
 glDisableVertexArrayAttrib = E('glDisableVertexArrayAttrib', None, UInt, UInt)
 glEnableVertexArrayAttrib = E('glEnableVertexArrayAttrib', None, UInt, UInt)
 glVertexArrayElementBuffer = E('glVertexArrayElementBuffer', None, UInt, UInt)
-glVertexArrayVertexBuffer = E('glVertexArrayVertexBuffer', None, UInt, UInt,
-                              UInt, Size, Int)
+glVertexArrayVertexBuffer = E(
+    'glVertexArrayVertexBuffer', None, UInt, UInt, UInt, Size, Int)
 glVertexArrayVertexBuffers = E('glVertexArrayVertexBuffers', None, UInt, UInt,
                                Int, P(UInt), P(Size), P(Int))
-glVertexArrayAttribBinding = E('glVertexArrayAttribBinding', None, UInt, UInt,
-                               UInt)
-glVertexArrayAttribFormat = E('glVertexArrayAttribFormat', None, UInt, UInt,
-                              Int, UInt, UByte, UInt)
-glVertexArrayAttribIFormat = E('glVertexArrayAttribIFormat', None, UInt, UInt,
-                               Int, UInt, UInt)
-glVertexArrayAttribLFormat = E('glVertexArrayAttribLFormat', None, UInt, UInt,
-                               Int, UInt, UInt)
-glVertexArrayBindingDivisor = E('glVertexArrayBindingDivisor', None, UInt,
-                                UInt, UInt)
+glVertexArrayAttribBinding = E(
+    'glVertexArrayAttribBinding', None, UInt, UInt, UInt)
+glVertexArrayAttribFormat = E(
+    'glVertexArrayAttribFormat', None, UInt, UInt, Int, UInt, UByte, UInt)
+glVertexArrayAttribIFormat = E(
+    'glVertexArrayAttribIFormat', None, UInt, UInt, Int, UInt, UInt)
+glVertexArrayAttribLFormat = E(
+    'glVertexArrayAttribLFormat', None, UInt, UInt, Int, UInt, UInt)
+glVertexArrayBindingDivisor = E(
+    'glVertexArrayBindingDivisor', None, UInt, UInt, UInt)
 glGetVertexArrayiv = E('glGetVertexArrayiv', None, UInt, UInt, P(Int))
-glGetVertexArrayIndexediv = E('glGetVertexArrayIndexediv', None, UInt, UInt,
-                              UInt, P(Int))
-glGetVertexArrayIndexed64iv = E('glGetVertexArrayIndexed64iv', None, UInt,
-                                UInt, UInt, P(Int64))
+glGetVertexArrayIndexediv = E(
+    'glGetVertexArrayIndexediv', None, UInt, UInt, UInt, P(Int))
+glGetVertexArrayIndexed64iv = E(
+    'glGetVertexArrayIndexed64iv', None, UInt, UInt, UInt, P(Int64))
 glCreateSamplers = E('glCreateSamplers', None, Int, P(UInt))
 glCreateProgramPipelines = E('glCreateProgramPipelines', None, Int, P(UInt))
 glCreateQueries = E('glCreateQueries', None, UInt, Int, P(UInt))
-glGetQueryBufferObjecti64v = E('glGetQueryBufferObjecti64v', None, UInt, UInt,
-                               UInt, Size)
-glGetQueryBufferObjectiv = E('glGetQueryBufferObjectiv', None, UInt, UInt,
-                             UInt, Size)
-glGetQueryBufferObjectui64v = E('glGetQueryBufferObjectui64v', None, UInt,
-                                UInt, UInt, Size)
-glGetQueryBufferObjectuiv = E('glGetQueryBufferObjectuiv', None, UInt, UInt,
-                              UInt, Size)
+glGetQueryBufferObjecti64v = E(
+    'glGetQueryBufferObjecti64v', None, UInt, UInt, UInt, Size)
+glGetQueryBufferObjectiv = E(
+    'glGetQueryBufferObjectiv', None, UInt, UInt, UInt, Size)
+glGetQueryBufferObjectui64v = E(
+    'glGetQueryBufferObjectui64v', None, UInt, UInt, UInt, Size)
+glGetQueryBufferObjectuiv = E(
+    'glGetQueryBufferObjectuiv', None, UInt, UInt, UInt, Size)
 glMemoryBarrierByRegion = E('glMemoryBarrierByRegion', None, UInt)
 glGetTextureSubImage = E('glGetTextureSubImage', None, UInt, Int, Int, Int,
                          Int, Int, Int, Int, UInt, UInt, Int, VoidP)
-glGetCompressedTextureSubImage = E('glGetCompressedTextureSubImage', None,
-                                   UInt, Int, Int, Int, Int, Int, Int, Int,
-                                   Int, VoidP)
+glGetCompressedTextureSubImage = E(
+    'glGetCompressedTextureSubImage',
+    None, UInt, Int, Int, Int, Int, Int, Int, Int, Int, VoidP)
 glGetGraphicsResetStatus = E('glGetGraphicsResetStatus', UInt)
-glGetnCompressedTexImage = E('glGetnCompressedTexImage', None, UInt, Int, Int,
-                             VoidP)
+glGetnCompressedTexImage = E(
+    'glGetnCompressedTexImage', None, UInt, Int, Int, VoidP)
 glGetnTexImage = E('glGetnTexImage', None, UInt, Int, UInt, UInt, Int, VoidP)
 glGetnUniformdv = E('glGetnUniformdv', None, UInt, Int, Int, P(Double))
 glGetnUniformfv = E('glGetnUniformfv', None, UInt, Int, Int, P(Float))
 glGetnUniformiv = E('glGetnUniformiv', None, UInt, Int, Int, P(Int))
 glGetnUniformuiv = E('glGetnUniformuiv', None, UInt, Int, Int, P(UInt))
-glReadnPixels = E('glReadnPixels', None, Int, Int, Int, Int, UInt, UInt, Int,
-                  VoidP)
+glReadnPixels = E(
+    'glReadnPixels', None, Int, Int, Int, Int, UInt, UInt, Int, VoidP)
 glTextureBarrier = E('glTextureBarrier', None)
 
 __all__ = [

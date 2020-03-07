@@ -23,18 +23,18 @@ PFNGLUNIFORMMATRIX2X4FVPROC = C(None, Int, Int, UByte, P(Float))
 PFNGLUNIFORMMATRIX4X2FVPROC = C(None, Int, Int, UByte, P(Float))
 PFNGLUNIFORMMATRIX3X4FVPROC = C(None, Int, Int, UByte, P(Float))
 PFNGLUNIFORMMATRIX4X3FVPROC = C(None, Int, Int, UByte, P(Float))
-glUniformMatrix2x3fv = E('glUniformMatrix2x3fv', None, Int, Int, UByte,
-                         P(Float))
-glUniformMatrix3x2fv = E('glUniformMatrix3x2fv', None, Int, Int, UByte,
-                         P(Float))
-glUniformMatrix2x4fv = E('glUniformMatrix2x4fv', None, Int, Int, UByte,
-                         P(Float))
-glUniformMatrix4x2fv = E('glUniformMatrix4x2fv', None, Int, Int, UByte,
-                         P(Float))
-glUniformMatrix3x4fv = E('glUniformMatrix3x4fv', None, Int, Int, UByte,
-                         P(Float))
-glUniformMatrix4x3fv = E('glUniformMatrix4x3fv', None, Int, Int, UByte,
-                         P(Float))
+glUniformMatrix2x3fv = E(
+    'glUniformMatrix2x3fv', None, Int, Int, UByte, P(Float))
+glUniformMatrix3x2fv = E(
+    'glUniformMatrix3x2fv', None, Int, Int, UByte, P(Float))
+glUniformMatrix2x4fv = E(
+    'glUniformMatrix2x4fv', None, Int, Int, UByte, P(Float))
+glUniformMatrix4x2fv = E(
+    'glUniformMatrix4x2fv', None, Int, Int, UByte, P(Float))
+glUniformMatrix3x4fv = E(
+    'glUniformMatrix3x4fv', None, Int, Int, UByte, P(Float))
+glUniformMatrix4x3fv = E(
+    'glUniformMatrix4x3fv', None, Int, Int, UByte, P(Float))
 
 __all__ = [
     'GL_VERSION_2_1', 'GL_PIXEL_PACK_BUFFER', 'GL_PIXEL_UNPACK_BUFFER',

@@ -90,7 +90,7 @@ class Array(object):
 
     @property
     def _as_parameter_(self):  # 用来传递自身的指针
-        return self.__values__
+        return ctypes.cast(self.__values__, ctypes.POINTER(ctypes.c_float))
 
     def __getitem__(self, item):
         return self.__values__[item]

@@ -47,7 +47,7 @@ PFNGLGETBUFFERSUBDATAPROC = C(None, UInt, Size, Size, VoidP)
 PFNGLMAPBUFFERPROC = C(VoidP, UInt, UInt)
 PFNGLUNMAPBUFFERPROC = C(UByte, UInt)
 PFNGLGETBUFFERPARAMETERIVPROC = C(None, UInt, UInt, P(Int))
-PFNGLGETBUFFERPOINTERVPROC = C(None, UInt, UInt, VoidP)
+PFNGLGETBUFFERPOINTERVPROC = C(None, UInt, UInt, P(VoidP))
 glGenQueries = E('glGenQueries', None, Int, P(UInt))
 glDeleteQueries = E('glDeleteQueries', None, Int, P(UInt))
 glIsQuery = E('glIsQuery', UByte, UInt)
@@ -66,7 +66,7 @@ glGetBufferSubData = E('glGetBufferSubData', None, UInt, Size, Size, VoidP)
 glMapBuffer = E('glMapBuffer', VoidP, UInt, UInt)
 glUnmapBuffer = E('glUnmapBuffer', UByte, UInt)
 glGetBufferParameteriv = E('glGetBufferParameteriv', None, UInt, UInt, P(Int))
-glGetBufferPointerv = E('glGetBufferPointerv', None, UInt, UInt, VoidP)
+glGetBufferPointerv = E('glGetBufferPointerv', None, UInt, UInt, P(VoidP))
 
 __all__ = [
     'GL_VERSION_1_5', 'GL_BUFFER_SIZE', 'GL_BUFFER_USAGE',

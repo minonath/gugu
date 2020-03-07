@@ -30,7 +30,7 @@ GL_MIN = 0x8007
 GL_MAX = 0x8008
 PFNGLBLENDFUNCSEPARATEPROC = C(None, UInt, UInt, UInt, UInt)
 PFNGLMULTIDRAWARRAYSPROC = C(None, UInt, P(Int), P(Int), Int)
-PFNGLMULTIDRAWELEMENTSPROC = C(None, UInt, P(Int), UInt, VoidP, Int)
+PFNGLMULTIDRAWELEMENTSPROC = C(None, UInt, P(Int), UInt, P(VoidP), Int)
 PFNGLPOINTPARAMETERFPROC = C(None, UInt, Float)
 PFNGLPOINTPARAMETERFVPROC = C(None, UInt, P(Float))
 PFNGLPOINTPARAMETERIPROC = C(None, UInt, Int)
@@ -39,8 +39,8 @@ PFNGLBLENDCOLORPROC = C(None, Float, Float, Float, Float)
 PFNGLBLENDEQUATIONPROC = C(None, UInt)
 glBlendFuncSeparate = E('glBlendFuncSeparate', None, UInt, UInt, UInt, UInt)
 glMultiDrawArrays = E('glMultiDrawArrays', None, UInt, P(Int), P(Int), Int)
-glMultiDrawElements = E('glMultiDrawElements', None, UInt, P(Int), UInt,
-                        VoidP, Int)
+glMultiDrawElements = E(
+    'glMultiDrawElements', None, UInt, P(Int), UInt, P(VoidP), Int)
 glPointParameterf = E('glPointParameterf', None, UInt, Float)
 glPointParameterfv = E('glPointParameterfv', None, UInt, P(Float))
 glPointParameteri = E('glPointParameteri', None, UInt, Int)

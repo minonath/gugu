@@ -72,8 +72,10 @@ class Buffer(object):
         if not _buffer_id:
             raise OpenGLError('无法创建(Buffer)缓存')
 
-        glBindBuffer(buffer_target, _buffer_id)
-        glBufferData(buffer_target, _byte_number, data, buffer_mode)
+        buffer_target_int = getattr(gu.graphic.gl_api, buffer_target)
+        buffer_mode_int = getattr(gu.graphic.gl_api, buffer_mode)
+        glBindBuffer(buffer_target_int, _buffer_id)
+        glBufferData(buffer_target_int, _byte_number, data, buffer_mode_int)
 
         self._as_parameter_ = _buffer_id  # _as_parameter_ 作为 ctypes 传递专用
         self._buffer_size = _byte_number
@@ -89,8 +91,8 @@ class Buffer(object):
         self._buffer_element_type = _element_type
         # self._buffer_group_type
         self._buffer_type = getattr(gu.graphic.gl_api, buffer_type)
-        self._buffer_target = getattr(gu.graphic.gl_api, buffer_target)
-        self._buffer_mode = getattr(gu.graphic.gl_api, buffer_mode)
+        self._buffer_target = buffer_target_int
+        self._buffer_mode = buffer_mode_int
 
         self.__string__ = '<Buffer:{} size:{} ({} | {} | {})>'.format(
             _buffer_id.value, _byte_number,

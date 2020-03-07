@@ -22,11 +22,11 @@ GL_QUERY_RESULT_NO_WAIT = 0x9194
 GL_MIRROR_CLAMP_TO_EDGE = 0x8743
 PFNGLBUFFERSTORAGEPROC = C(None, UInt, Size, VoidP, UInt)
 PFNGLCLEARTEXIMAGEPROC = C(None, UInt, Int, UInt, UInt, VoidP)
-PFNGLCLEARTEXSUBIMAGEPROC = C(None, UInt, Int, Int, Int, Int, Int, Int, Int,
-                              UInt, UInt, VoidP)
+PFNGLCLEARTEXSUBIMAGEPROC = C(
+    None, UInt, Int, Int, Int, Int, Int, Int, Int, UInt, UInt, VoidP)
 PFNGLBINDBUFFERSBASEPROC = C(None, UInt, UInt, Int, P(UInt))
-PFNGLBINDBUFFERSRANGEPROC = C(None, UInt, UInt, Int, P(UInt), P(Size),
-                              P(Size))
+PFNGLBINDBUFFERSRANGEPROC = C(
+    None, UInt, UInt, Int, P(UInt), P(Size), P(Size))
 PFNGLBINDTEXTURESPROC = C(None, UInt, Int, P(UInt))
 PFNGLBINDSAMPLERSPROC = C(None, UInt, Int, P(UInt))
 PFNGLBINDIMAGETEXTURESPROC = C(None, UInt, Int, P(UInt))
@@ -36,13 +36,13 @@ glClearTexImage = E('glClearTexImage', None, UInt, Int, UInt, UInt, VoidP)
 glClearTexSubImage = E('glClearTexSubImage', None, UInt, Int, Int, Int, Int,
                        Int, Int, Int, UInt, UInt, VoidP)
 glBindBuffersBase = E('glBindBuffersBase', None, UInt, UInt, Int, P(UInt))
-glBindBuffersRange = E('glBindBuffersRange', None, UInt, UInt, Int, P(UInt),
-                       P(Size), P(Size))
+glBindBuffersRange = E(
+    'glBindBuffersRange', None, UInt, UInt, Int, P(UInt), P(Size), P(Size))
 glBindTextures = E('glBindTextures', None, UInt, Int, P(UInt))
 glBindSamplers = E('glBindSamplers', None, UInt, Int, P(UInt))
 glBindImageTextures = E('glBindImageTextures', None, UInt, Int, P(UInt))
-glBindVertexBuffers = E('glBindVertexBuffers', None, UInt, Int, P(UInt),
-                        P(Size), P(Int))
+glBindVertexBuffers = E(
+    'glBindVertexBuffers', None, UInt, Int, P(UInt), P(Size), P(Int))
 
 __all__ = [
     'GL_VERSION_4_4', 'GL_MAX_VERTEX_ATTRIB_STRIDE',

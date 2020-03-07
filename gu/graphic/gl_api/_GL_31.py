@@ -67,7 +67,7 @@ PFNGLDRAWELEMENTSINSTANCEDPROC = C(None, UInt, Int, UInt, VoidP, Int)
 PFNGLTEXBUFFERPROC = C(None, UInt, UInt, UInt)
 PFNGLPRIMITIVERESTARTINDEXPROC = C(None, UInt)
 PFNGLCOPYBUFFERSUBDATAPROC = C(None, UInt, UInt, Size, Size, Size)
-PFNGLGETUNIFORMINDICESPROC = C(None, UInt, Int, CharP, P(UInt))
+PFNGLGETUNIFORMINDICESPROC = C(None, UInt, Int, P(CharP), P(UInt))
 PFNGLGETACTIVEUNIFORMSIVPROC = C(None, UInt, Int, P(UInt), UInt, P(Int))
 PFNGLGETACTIVEUNIFORMNAMEPROC = C(None, UInt, UInt, Int, P(Int), CharP)
 PFNGLGETUNIFORMBLOCKINDEXPROC = C(UInt, UInt, CharP)
@@ -75,23 +75,23 @@ PFNGLGETACTIVEUNIFORMBLOCKIVPROC = C(None, UInt, UInt, UInt, P(Int))
 PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC = C(None, UInt, UInt, Int, P(Int), CharP)
 PFNGLUNIFORMBLOCKBINDINGPROC = C(None, UInt, UInt, UInt)
 glDrawArraysInstanced = E('glDrawArraysInstanced', None, UInt, Int, Int, Int)
-glDrawElementsInstanced = E('glDrawElementsInstanced', None, UInt, Int, UInt,
-                            VoidP, Int)
+glDrawElementsInstanced = E(
+    'glDrawElementsInstanced', None, UInt, Int, UInt, VoidP, Int)
 glTexBuffer = E('glTexBuffer', None, UInt, UInt, UInt)
 glPrimitiveRestartIndex = E('glPrimitiveRestartIndex', None, UInt)
-glCopyBufferSubData = E('glCopyBufferSubData', None, UInt, UInt, Size, Size,
-                        Size)
-glGetUniformIndices = E('glGetUniformIndices', None, UInt, Int, CharP,
-                        P(UInt))
-glGetActiveUniformsiv = E('glGetActiveUniformsiv', None, UInt, Int, P(UInt),
-                          UInt, P(Int))
-glGetActiveUniformName = E('glGetActiveUniformName', None, UInt, UInt, Int,
-                           P(Int), CharP)
+glCopyBufferSubData = E(
+    'glCopyBufferSubData', None, UInt, UInt, Size, Size, Size)
+glGetUniformIndices = E(
+    'glGetUniformIndices', None, UInt, Int, P(CharP), P(UInt))
+glGetActiveUniformsiv = E(
+    'glGetActiveUniformsiv', None, UInt, Int, P(UInt), UInt, P(Int))
+glGetActiveUniformName = E(
+    'glGetActiveUniformName', None, UInt, UInt, Int, P(Int), CharP)
 glGetUniformBlockIndex = E('glGetUniformBlockIndex', UInt, UInt, CharP)
-glGetActiveUniformBlockiv = E('glGetActiveUniformBlockiv', None, UInt, UInt,
-                              UInt, P(Int))
-glGetActiveUniformBlockName = E('glGetActiveUniformBlockName', None, UInt,
-                                UInt, Int, P(Int), CharP)
+glGetActiveUniformBlockiv = E(
+    'glGetActiveUniformBlockiv', None, UInt, UInt, UInt, P(Int))
+glGetActiveUniformBlockName = E(
+    'glGetActiveUniformBlockName', None, UInt, UInt, Int, P(Int), CharP)
 glUniformBlockBinding = E('glUniformBlockBinding', None, UInt, UInt, UInt)
 
 __all__ = [

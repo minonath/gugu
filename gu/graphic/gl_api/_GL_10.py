@@ -186,8 +186,8 @@ PFNGLTEXPARAMETERFVPROC = C(None, UInt, UInt, P(Float))
 PFNGLTEXPARAMETERIPROC = C(None, UInt, UInt, Int)
 PFNGLTEXPARAMETERIVPROC = C(None, UInt, UInt, P(Int))
 PFNGLTEXIMAGE1DPROC = C(None, UInt, Int, Int, Int, Int, UInt, UInt, VoidP)
-PFNGLTEXIMAGE2DPROC = C(None, UInt, Int, Int, Int, Int, Int, UInt, UInt,
-                        VoidP)
+PFNGLTEXIMAGE2DPROC = C(
+    None, UInt, Int, Int, Int, Int, Int, UInt, UInt, VoidP)
 PFNGLDRAWBUFFERPROC = C(None, UInt)
 PFNGLCLEARPROC = C(None, UInt)
 PFNGLCLEARCOLORPROC = C(None, Float, Float, Float, Float)
@@ -234,10 +234,10 @@ glTexParameterf = E('glTexParameterf', None, UInt, UInt, Float)
 glTexParameterfv = E('glTexParameterfv', None, UInt, UInt, P(Float))
 glTexParameteri = E('glTexParameteri', None, UInt, UInt, Int)
 glTexParameteriv = E('glTexParameteriv', None, UInt, UInt, P(Int))
-glTexImage1D = E('glTexImage1D', None, UInt, Int, Int, Int, Int, UInt, UInt,
-                 VoidP)
-glTexImage2D = E('glTexImage2D', None, UInt, Int, Int, Int, Int, Int, UInt,
-                 UInt, VoidP)
+glTexImage1D = E(
+    'glTexImage1D', None, UInt, Int, Int, Int, Int, UInt, UInt, VoidP)
+glTexImage2D = E(
+    'glTexImage2D', None, UInt, Int, Int, Int, Int, Int, UInt, UInt, VoidP)
 glDrawBuffer = E('glDrawBuffer', None, UInt)
 glClear = E('glClear', None, UInt)
 glClearColor = E('glClearColor', None, Float, Float, Float, Float)
@@ -268,10 +268,10 @@ glGetString = E('glGetString', P(UByte), UInt)
 glGetTexImage = E('glGetTexImage', None, UInt, Int, UInt, UInt, VoidP)
 glGetTexParameterfv = E('glGetTexParameterfv', None, UInt, UInt, P(Float))
 glGetTexParameteriv = E('glGetTexParameteriv', None, UInt, UInt, P(Int))
-glGetTexLevelParameterfv = E('glGetTexLevelParameterfv', None, UInt, Int,
-                             UInt, P(Float))
-glGetTexLevelParameteriv = E('glGetTexLevelParameteriv', None, UInt, Int,
-                             UInt, P(Int))
+glGetTexLevelParameterfv = E(
+    'glGetTexLevelParameterfv', None, UInt, Int, UInt, P(Float))
+glGetTexLevelParameteriv = E(
+    'glGetTexLevelParameteriv', None, UInt, Int, UInt, P(Int))
 glIsEnabled = E('glIsEnabled', UByte, UInt)
 glDepthRange = E('glDepthRange', None, Double, Double)
 glViewport = E('glViewport', None, Int, Int, Int, Int)

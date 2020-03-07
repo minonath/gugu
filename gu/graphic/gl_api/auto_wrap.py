@@ -139,14 +139,14 @@ def _get_function_of(line):
     line = line.replace('const', ' ')
     line = line.replace('*', ' * ')  # 前后都会有问题
     comma_split = line.split(',')
-    return_split = tuple(k for k in comma_split[0].split(' ') if k)
+    return_split = tuple(k for k in comma_split[0].split(' ') if k)  # 返回值
 
     if len(return_split) == 1:
         function_return = _get_translate_of(return_split[0])
     elif len(return_split) == 2 and return_split[1] == '*':
         function_return = _get_pointer_of(_get_translate_of(return_split[0]))
     else:
-        raise ValueError(line)
+        raise ValueError(line)  # 暂时还没有返回 void ** 的
 
     name_split = tuple(k for k in comma_split[1].split(' ') if k)
 
@@ -155,20 +155,26 @@ def _get_function_of(line):
         function_argument = _get_translate_of(name_split[2])
         if len(name_split) > 3 and name_split[3] == '*':
             function_argument = _get_pointer_of(function_argument)
+            if name_split[4] == '*':
+                function_argument = _get_pointer_of(function_argument)
     else:
         function_name = name_split[0]
         function_argument = _get_translate_of(name_split[1])
         if len(name_split) > 2 and name_split[2] == '*':
             function_argument = _get_pointer_of(function_argument)
+            if name_split[3] == '*':
+                function_argument = _get_pointer_of(function_argument)
 
-    if len(comma_split) > 2:
+    if len(comma_split) > 2:  # 后续参数
         function_argument = [function_argument]
 
         for other in comma_split[2:]:
             space_split = tuple(k for k in other.split(' ') if k)
             meow = _get_translate_of(space_split[0])
             if space_split[1] == '*':
-                meow = _get_pointer_of(meow)
+                meow = _get_pointer_of(meow)  # 当出现 * 的时候，追加一次 * 确认
+                if space_split[2] == '*':  # 因为会出现 char ** shader 这样的值
+                    meow = _get_pointer_of(meow)
             function_argument.append(meow)
 
         function_argument = ', '.join(function_argument)
@@ -204,7 +210,7 @@ def _write_gl_wrap_file(head_file):
                 if file_name != version_name:
                     file_name = version_name
                     if wrap_file:
-                        wrap_file.write("\n__all__ = [\n'%s'\n]" % (
+                        wrap_file.write("\n__all__ = ['%s']\n" % (
                             "', '".join(all_set)))
                         all_set.clear()
                         wrap_file.close()

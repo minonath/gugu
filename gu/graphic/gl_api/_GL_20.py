@@ -96,10 +96,10 @@ PFNGLDELETESHADERPROC = C(None, UInt)
 PFNGLDETACHSHADERPROC = C(None, UInt, UInt)
 PFNGLDISABLEVERTEXATTRIBARRAYPROC = C(None, UInt)
 PFNGLENABLEVERTEXATTRIBARRAYPROC = C(None, UInt)
-PFNGLGETACTIVEATTRIBPROC = C(None, UInt, UInt, Int, P(Int), P(Int), P(UInt),
-                             CharP)
-PFNGLGETACTIVEUNIFORMPROC = C(None, UInt, UInt, Int, P(Int), P(Int), P(UInt),
-                              CharP)
+PFNGLGETACTIVEATTRIBPROC = C(
+    None, UInt, UInt, Int, P(Int), P(Int), P(UInt), CharP)
+PFNGLGETACTIVEUNIFORMPROC = C(
+    None, UInt, UInt, Int, P(Int), P(Int), P(UInt), CharP)
 PFNGLGETATTACHEDSHADERSPROC = C(None, UInt, Int, P(Int), P(UInt))
 PFNGLGETATTRIBLOCATIONPROC = C(Int, UInt, CharP)
 PFNGLGETPROGRAMIVPROC = C(None, UInt, UInt, P(Int))
@@ -113,11 +113,11 @@ PFNGLGETUNIFORMIVPROC = C(None, UInt, Int, P(Int))
 PFNGLGETVERTEXATTRIBDVPROC = C(None, UInt, UInt, P(Double))
 PFNGLGETVERTEXATTRIBFVPROC = C(None, UInt, UInt, P(Float))
 PFNGLGETVERTEXATTRIBIVPROC = C(None, UInt, UInt, P(Int))
-PFNGLGETVERTEXATTRIBPOINTERVPROC = C(None, UInt, UInt, VoidP)
+PFNGLGETVERTEXATTRIBPOINTERVPROC = C(None, UInt, UInt, P(VoidP))
 PFNGLISPROGRAMPROC = C(UByte, UInt)
 PFNGLISSHADERPROC = C(UByte, UInt)
 PFNGLLINKPROGRAMPROC = C(None, UInt)
-PFNGLSHADERSOURCEPROC = C(None, UInt, Int, CharP, P(Int))
+PFNGLSHADERSOURCEPROC = C(None, UInt, Int, P(CharP), P(Int))
 PFNGLUSEPROGRAMPROC = C(None, UInt)
 PFNGLUNIFORM1FPROC = C(None, Int, Float)
 PFNGLUNIFORM2FPROC = C(None, Int, Float, Float)
@@ -179,8 +179,8 @@ PFNGLVERTEXATTRIBPOINTERPROC = C(None, UInt, Int, UInt, UByte, Int, VoidP)
 glBlendEquationSeparate = E('glBlendEquationSeparate', None, UInt, UInt)
 glDrawBuffers = E('glDrawBuffers', None, Int, P(UInt))
 glStencilOpSeparate = E('glStencilOpSeparate', None, UInt, UInt, UInt, UInt)
-glStencilFuncSeparate = E('glStencilFuncSeparate', None, UInt, UInt, Int,
-                          UInt)
+glStencilFuncSeparate = E(
+    'glStencilFuncSeparate', None, UInt, UInt, Int, UInt)
 glStencilMaskSeparate = E('glStencilMaskSeparate', None, UInt, UInt)
 glAttachShader = E('glAttachShader', None, UInt, UInt)
 glBindAttribLocation = E('glBindAttribLocation', None, UInt, UInt, CharP)
@@ -196,8 +196,8 @@ glGetActiveAttrib = E('glGetActiveAttrib', None, UInt, UInt, Int, P(Int),
                       P(Int), P(UInt), CharP)
 glGetActiveUniform = E('glGetActiveUniform', None, UInt, UInt, Int, P(Int),
                        P(Int), P(UInt), CharP)
-glGetAttachedShaders = E('glGetAttachedShaders', None, UInt, Int, P(Int),
-                         P(UInt))
+glGetAttachedShaders = E(
+    'glGetAttachedShaders', None, UInt, Int, P(Int), P(UInt))
 glGetAttribLocation = E('glGetAttribLocation', Int, UInt, CharP)
 glGetProgramiv = E('glGetProgramiv', None, UInt, UInt, P(Int))
 glGetProgramInfoLog = E('glGetProgramInfoLog', None, UInt, Int, P(Int), CharP)
@@ -210,12 +210,12 @@ glGetUniformiv = E('glGetUniformiv', None, UInt, Int, P(Int))
 glGetVertexAttribdv = E('glGetVertexAttribdv', None, UInt, UInt, P(Double))
 glGetVertexAttribfv = E('glGetVertexAttribfv', None, UInt, UInt, P(Float))
 glGetVertexAttribiv = E('glGetVertexAttribiv', None, UInt, UInt, P(Int))
-glGetVertexAttribPointerv = E('glGetVertexAttribPointerv', None, UInt, UInt,
-                              VoidP)
+glGetVertexAttribPointerv = E(
+    'glGetVertexAttribPointerv', None, UInt, UInt, P(VoidP))
 glIsProgram = E('glIsProgram', UByte, UInt)
 glIsShader = E('glIsShader', UByte, UInt)
 glLinkProgram = E('glLinkProgram', None, UInt)
-glShaderSource = E('glShaderSource', None, UInt, Int, CharP, P(Int))
+glShaderSource = E('glShaderSource', None, UInt, Int, P(CharP), P(Int))
 glUseProgram = E('glUseProgram', None, UInt)
 glUniform1f = E('glUniform1f', None, Int, Float)
 glUniform2f = E('glUniform2f', None, Int, Float, Float)
@@ -258,27 +258,27 @@ glVertexAttrib3sv = E('glVertexAttrib3sv', None, UInt, P(Short))
 glVertexAttrib4Nbv = E('glVertexAttrib4Nbv', None, UInt, P(Byte))
 glVertexAttrib4Niv = E('glVertexAttrib4Niv', None, UInt, P(Int))
 glVertexAttrib4Nsv = E('glVertexAttrib4Nsv', None, UInt, P(Short))
-glVertexAttrib4Nub = E('glVertexAttrib4Nub', None, UInt, UByte, UByte, UByte,
-                       UByte)
+glVertexAttrib4Nub = E(
+    'glVertexAttrib4Nub', None, UInt, UByte, UByte, UByte, UByte)
 glVertexAttrib4Nubv = E('glVertexAttrib4Nubv', None, UInt, P(UByte))
 glVertexAttrib4Nuiv = E('glVertexAttrib4Nuiv', None, UInt, P(UInt))
 glVertexAttrib4Nusv = E('glVertexAttrib4Nusv', None, UInt, P(UShort))
 glVertexAttrib4bv = E('glVertexAttrib4bv', None, UInt, P(Byte))
-glVertexAttrib4d = E('glVertexAttrib4d', None, UInt, Double, Double, Double,
-                     Double)
+glVertexAttrib4d = E(
+    'glVertexAttrib4d', None, UInt, Double, Double, Double, Double)
 glVertexAttrib4dv = E('glVertexAttrib4dv', None, UInt, P(Double))
-glVertexAttrib4f = E('glVertexAttrib4f', None, UInt, Float, Float, Float,
-                     Float)
+glVertexAttrib4f = E(
+    'glVertexAttrib4f', None, UInt, Float, Float, Float, Float)
 glVertexAttrib4fv = E('glVertexAttrib4fv', None, UInt, P(Float))
 glVertexAttrib4iv = E('glVertexAttrib4iv', None, UInt, P(Int))
-glVertexAttrib4s = E('glVertexAttrib4s', None, UInt, Short, Short, Short,
-                     Short)
+glVertexAttrib4s = E(
+    'glVertexAttrib4s', None, UInt, Short, Short, Short, Short)
 glVertexAttrib4sv = E('glVertexAttrib4sv', None, UInt, P(Short))
 glVertexAttrib4ubv = E('glVertexAttrib4ubv', None, UInt, P(UByte))
 glVertexAttrib4uiv = E('glVertexAttrib4uiv', None, UInt, P(UInt))
 glVertexAttrib4usv = E('glVertexAttrib4usv', None, UInt, P(UShort))
-glVertexAttribPointer = E('glVertexAttribPointer', None, UInt, Int, UInt,
-                          UByte, Int, VoidP)
+glVertexAttribPointer = E(
+    'glVertexAttribPointer', None, UInt, Int, UInt, UByte, Int, VoidP)
 
 __all__ = [
     'GL_VERSION_2_0', 'GL_BLEND_EQUATION_RGB',

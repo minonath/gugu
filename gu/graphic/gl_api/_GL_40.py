@@ -105,12 +105,12 @@ PFNGLUNIFORMMATRIX4X3DVPROC = C(None, Int, Int, UByte, P(Double))
 PFNGLGETUNIFORMDVPROC = C(None, UInt, Int, P(Double))
 PFNGLGETSUBROUTINEUNIFORMLOCATIONPROC = C(Int, UInt, UInt, CharP)
 PFNGLGETSUBROUTINEINDEXPROC = C(UInt, UInt, UInt, CharP)
-PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC = C(None, UInt, UInt, UInt, UInt,
-                                          P(Int))
-PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC = C(None, UInt, UInt, UInt, Int,
-                                            P(Int), CharP)
-PFNGLGETACTIVESUBROUTINENAMEPROC = C(None, UInt, UInt, UInt, Int, P(Int),
-                                     CharP)
+PFNGLGETACTIVESUBROUTINEUNIFORMIVPROC = C(
+    None, UInt, UInt, UInt, UInt, P(Int))
+PFNGLGETACTIVESUBROUTINEUNIFORMNAMEPROC = C(
+    None, UInt, UInt, UInt, Int, P(Int), CharP)
+PFNGLGETACTIVESUBROUTINENAMEPROC = C(
+    None, UInt, UInt, UInt, Int, P(Int), CharP)
 PFNGLUNIFORMSUBROUTINESUIVPROC = C(None, UInt, Int, P(UInt))
 PFNGLGETUNIFORMSUBROUTINEUIVPROC = C(None, UInt, Int, P(UInt))
 PFNGLGETPROGRAMSTAGEIVPROC = C(None, UInt, UInt, UInt, P(Int))
@@ -129,11 +129,11 @@ PFNGLENDQUERYINDEXEDPROC = C(None, UInt, UInt)
 PFNGLGETQUERYINDEXEDIVPROC = C(None, UInt, UInt, UInt, P(Int))
 glMinSampleShading = E('glMinSampleShading', None, Float)
 glBlendEquationi = E('glBlendEquationi', None, UInt, UInt)
-glBlendEquationSeparatei = E('glBlendEquationSeparatei', None, UInt, UInt,
-                             UInt)
+glBlendEquationSeparatei = E(
+    'glBlendEquationSeparatei', None, UInt, UInt, UInt)
 glBlendFunci = E('glBlendFunci', None, UInt, UInt, UInt)
-glBlendFuncSeparatei = E('glBlendFuncSeparatei', None, UInt, UInt, UInt, UInt,
-                         UInt)
+glBlendFuncSeparatei = E(
+    'glBlendFuncSeparatei', None, UInt, UInt, UInt, UInt, UInt)
 glDrawArraysIndirect = E('glDrawArraysIndirect', None, UInt, VoidP)
 glDrawElementsIndirect = E('glDrawElementsIndirect', None, UInt, UInt, VoidP)
 glUniform1d = E('glUniform1d', None, Int, Double)
@@ -147,45 +147,45 @@ glUniform4dv = E('glUniform4dv', None, Int, Int, P(Double))
 glUniformMatrix2dv = E('glUniformMatrix2dv', None, Int, Int, UByte, P(Double))
 glUniformMatrix3dv = E('glUniformMatrix3dv', None, Int, Int, UByte, P(Double))
 glUniformMatrix4dv = E('glUniformMatrix4dv', None, Int, Int, UByte, P(Double))
-glUniformMatrix2x3dv = E('glUniformMatrix2x3dv', None, Int, Int, UByte,
-                         P(Double))
-glUniformMatrix2x4dv = E('glUniformMatrix2x4dv', None, Int, Int, UByte,
-                         P(Double))
-glUniformMatrix3x2dv = E('glUniformMatrix3x2dv', None, Int, Int, UByte,
-                         P(Double))
-glUniformMatrix3x4dv = E('glUniformMatrix3x4dv', None, Int, Int, UByte,
-                         P(Double))
-glUniformMatrix4x2dv = E('glUniformMatrix4x2dv', None, Int, Int, UByte,
-                         P(Double))
-glUniformMatrix4x3dv = E('glUniformMatrix4x3dv', None, Int, Int, UByte,
-                         P(Double))
+glUniformMatrix2x3dv = E(
+    'glUniformMatrix2x3dv', None, Int, Int, UByte, P(Double))
+glUniformMatrix2x4dv = E(
+    'glUniformMatrix2x4dv', None, Int, Int, UByte, P(Double))
+glUniformMatrix3x2dv = E(
+    'glUniformMatrix3x2dv', None, Int, Int, UByte, P(Double))
+glUniformMatrix3x4dv = E(
+    'glUniformMatrix3x4dv', None, Int, Int, UByte, P(Double))
+glUniformMatrix4x2dv = E(
+    'glUniformMatrix4x2dv', None, Int, Int, UByte, P(Double))
+glUniformMatrix4x3dv = E(
+    'glUniformMatrix4x3dv', None, Int, Int, UByte, P(Double))
 glGetUniformdv = E('glGetUniformdv', None, UInt, Int, P(Double))
-glGetSubroutineUniformLocation = E('glGetSubroutineUniformLocation', Int,
-                                   UInt, UInt, CharP)
+glGetSubroutineUniformLocation = E(
+    'glGetSubroutineUniformLocation', Int, UInt, UInt, CharP)
 glGetSubroutineIndex = E('glGetSubroutineIndex', UInt, UInt, UInt, CharP)
-glGetActiveSubroutineUniformiv = E('glGetActiveSubroutineUniformiv', None,
-                                   UInt, UInt, UInt, UInt, P(Int))
+glGetActiveSubroutineUniformiv = E(
+    'glGetActiveSubroutineUniformiv', None, UInt, UInt, UInt, UInt, P(Int))
 glGetActiveSubroutineUniformName = E('glGetActiveSubroutineUniformName', None,
                                      UInt, UInt, UInt, Int, P(Int), CharP)
-glGetActiveSubroutineName = E('glGetActiveSubroutineName', None, UInt, UInt,
-                              UInt, Int, P(Int), CharP)
-glUniformSubroutinesuiv = E('glUniformSubroutinesuiv', None, UInt, Int,
-                            P(UInt))
-glGetUniformSubroutineuiv = E('glGetUniformSubroutineuiv', None, UInt, Int,
-                              P(UInt))
+glGetActiveSubroutineName = E(
+    'glGetActiveSubroutineName', None, UInt, UInt, UInt, Int, P(Int), CharP)
+glUniformSubroutinesuiv = E(
+    'glUniformSubroutinesuiv', None, UInt, Int, P(UInt))
+glGetUniformSubroutineuiv = E(
+    'glGetUniformSubroutineuiv', None, UInt, Int, P(UInt))
 glGetProgramStageiv = E('glGetProgramStageiv', None, UInt, UInt, UInt, P(Int))
 glPatchParameteri = E('glPatchParameteri', None, UInt, Int)
 glPatchParameterfv = E('glPatchParameterfv', None, UInt, P(Float))
 glBindTransformFeedback = E('glBindTransformFeedback', None, UInt, UInt)
-glDeleteTransformFeedbacks = E('glDeleteTransformFeedbacks', None, Int,
-                               P(UInt))
+glDeleteTransformFeedbacks = E(
+    'glDeleteTransformFeedbacks', None, Int, P(UInt))
 glGenTransformFeedbacks = E('glGenTransformFeedbacks', None, Int, P(UInt))
 glIsTransformFeedback = E('glIsTransformFeedback', UByte, UInt)
 glPauseTransformFeedback = E('glPauseTransformFeedback', None)
 glResumeTransformFeedback = E('glResumeTransformFeedback', None)
 glDrawTransformFeedback = E('glDrawTransformFeedback', None, UInt, UInt)
-glDrawTransformFeedbackStream = E('glDrawTransformFeedbackStream', None, UInt,
-                                  UInt, UInt)
+glDrawTransformFeedbackStream = E(
+    'glDrawTransformFeedbackStream', None, UInt, UInt, UInt)
 glBeginQueryIndexed = E('glBeginQueryIndexed', None, UInt, UInt, UInt)
 glEndQueryIndexed = E('glEndQueryIndexed', None, UInt, UInt)
 glGetQueryIndexediv = E('glGetQueryIndexediv', None, UInt, UInt, UInt, P(Int))

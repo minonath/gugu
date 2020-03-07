@@ -46,7 +46,7 @@ PFNGLPROGRAMBINARYPROC = C(None, UInt, UInt, VoidP, Int)
 PFNGLPROGRAMPARAMETERIPROC = C(None, UInt, UInt, Int)
 PFNGLUSEPROGRAMSTAGESPROC = C(None, UInt, UInt, UInt)
 PFNGLACTIVESHADERPROGRAMPROC = C(None, UInt, UInt)
-PFNGLCREATESHADERPROGRAMVPROC = C(UInt, UInt, Int, CharP)
+PFNGLCREATESHADERPROGRAMVPROC = C(UInt, UInt, Int, P(CharP))
 PFNGLBINDPROGRAMPIPELINEPROC = C(None, UInt)
 PFNGLDELETEPROGRAMPIPELINESPROC = C(None, Int, P(UInt))
 PFNGLGENPROGRAMPIPELINESPROC = C(None, Int, P(UInt))
@@ -126,17 +126,18 @@ PFNGLGETFLOATI_VPROC = C(None, UInt, UInt, P(Float))
 PFNGLGETDOUBLEI_VPROC = C(None, UInt, UInt, P(Double))
 glReleaseShaderCompiler = E('glReleaseShaderCompiler', None)
 glShaderBinary = E('glShaderBinary', None, Int, P(UInt), UInt, VoidP, Int)
-glGetShaderPrecisionFormat = E('glGetShaderPrecisionFormat', None, UInt, UInt,
-                               P(Int), P(Int))
+glGetShaderPrecisionFormat = E(
+    'glGetShaderPrecisionFormat', None, UInt, UInt, P(Int), P(Int))
 glDepthRangef = E('glDepthRangef', None, Float, Float)
 glClearDepthf = E('glClearDepthf', None, Float)
-glGetProgramBinary = E('glGetProgramBinary', None, UInt, Int, P(Int), P(UInt),
-                       VoidP)
+glGetProgramBinary = E(
+    'glGetProgramBinary', None, UInt, Int, P(Int), P(UInt), VoidP)
 glProgramBinary = E('glProgramBinary', None, UInt, UInt, VoidP, Int)
 glProgramParameteri = E('glProgramParameteri', None, UInt, UInt, Int)
 glUseProgramStages = E('glUseProgramStages', None, UInt, UInt, UInt)
 glActiveShaderProgram = E('glActiveShaderProgram', None, UInt, UInt)
-glCreateShaderProgramv = E('glCreateShaderProgramv', UInt, UInt, Int, CharP)
+glCreateShaderProgramv = E(
+    'glCreateShaderProgramv', UInt, UInt, Int, P(CharP))
 glBindProgramPipeline = E('glBindProgramPipeline', None, UInt)
 glDeleteProgramPipelines = E('glDeleteProgramPipelines', None, Int, P(UInt))
 glGenProgramPipelines = E('glGenProgramPipelines', None, Int, P(UInt))
@@ -147,102 +148,102 @@ glProgramUniform1iv = E('glProgramUniform1iv', None, UInt, Int, Int, P(Int))
 glProgramUniform1f = E('glProgramUniform1f', None, UInt, Int, Float)
 glProgramUniform1fv = E('glProgramUniform1fv', None, UInt, Int, Int, P(Float))
 glProgramUniform1d = E('glProgramUniform1d', None, UInt, Int, Double)
-glProgramUniform1dv = E('glProgramUniform1dv', None, UInt, Int, Int,
-                        P(Double))
+glProgramUniform1dv = E(
+    'glProgramUniform1dv', None, UInt, Int, Int, P(Double))
 glProgramUniform1ui = E('glProgramUniform1ui', None, UInt, Int, UInt)
-glProgramUniform1uiv = E('glProgramUniform1uiv', None, UInt, Int, Int,
-                         P(UInt))
+glProgramUniform1uiv = E(
+    'glProgramUniform1uiv', None, UInt, Int, Int, P(UInt))
 glProgramUniform2i = E('glProgramUniform2i', None, UInt, Int, Int, Int)
 glProgramUniform2iv = E('glProgramUniform2iv', None, UInt, Int, Int, P(Int))
 glProgramUniform2f = E('glProgramUniform2f', None, UInt, Int, Float, Float)
 glProgramUniform2fv = E('glProgramUniform2fv', None, UInt, Int, Int, P(Float))
 glProgramUniform2d = E('glProgramUniform2d', None, UInt, Int, Double, Double)
-glProgramUniform2dv = E('glProgramUniform2dv', None, UInt, Int, Int,
-                        P(Double))
+glProgramUniform2dv = E(
+    'glProgramUniform2dv', None, UInt, Int, Int, P(Double))
 glProgramUniform2ui = E('glProgramUniform2ui', None, UInt, Int, UInt, UInt)
-glProgramUniform2uiv = E('glProgramUniform2uiv', None, UInt, Int, Int,
-                         P(UInt))
+glProgramUniform2uiv = E(
+    'glProgramUniform2uiv', None, UInt, Int, Int, P(UInt))
 glProgramUniform3i = E('glProgramUniform3i', None, UInt, Int, Int, Int, Int)
 glProgramUniform3iv = E('glProgramUniform3iv', None, UInt, Int, Int, P(Int))
-glProgramUniform3f = E('glProgramUniform3f', None, UInt, Int, Float, Float,
-                       Float)
+glProgramUniform3f = E(
+    'glProgramUniform3f', None, UInt, Int, Float, Float, Float)
 glProgramUniform3fv = E('glProgramUniform3fv', None, UInt, Int, Int, P(Float))
-glProgramUniform3d = E('glProgramUniform3d', None, UInt, Int, Double, Double,
-                       Double)
-glProgramUniform3dv = E('glProgramUniform3dv', None, UInt, Int, Int,
-                        P(Double))
-glProgramUniform3ui = E('glProgramUniform3ui', None, UInt, Int, UInt, UInt,
-                        UInt)
-glProgramUniform3uiv = E('glProgramUniform3uiv', None, UInt, Int, Int,
-                         P(UInt))
-glProgramUniform4i = E('glProgramUniform4i', None, UInt, Int, Int, Int, Int,
-                       Int)
+glProgramUniform3d = E(
+    'glProgramUniform3d', None, UInt, Int, Double, Double, Double)
+glProgramUniform3dv = E(
+    'glProgramUniform3dv', None, UInt, Int, Int, P(Double))
+glProgramUniform3ui = E(
+    'glProgramUniform3ui', None, UInt, Int, UInt, UInt, UInt)
+glProgramUniform3uiv = E(
+    'glProgramUniform3uiv', None, UInt, Int, Int, P(UInt))
+glProgramUniform4i = E(
+    'glProgramUniform4i', None, UInt, Int, Int, Int, Int, Int)
 glProgramUniform4iv = E('glProgramUniform4iv', None, UInt, Int, Int, P(Int))
-glProgramUniform4f = E('glProgramUniform4f', None, UInt, Int, Float, Float,
-                       Float, Float)
+glProgramUniform4f = E(
+    'glProgramUniform4f', None, UInt, Int, Float, Float, Float, Float)
 glProgramUniform4fv = E('glProgramUniform4fv', None, UInt, Int, Int, P(Float))
-glProgramUniform4d = E('glProgramUniform4d', None, UInt, Int, Double, Double,
-                       Double, Double)
-glProgramUniform4dv = E('glProgramUniform4dv', None, UInt, Int, Int,
-                        P(Double))
-glProgramUniform4ui = E('glProgramUniform4ui', None, UInt, Int, UInt, UInt,
-                        UInt, UInt)
-glProgramUniform4uiv = E('glProgramUniform4uiv', None, UInt, Int, Int,
-                         P(UInt))
-glProgramUniformMatrix2fv = E('glProgramUniformMatrix2fv', None, UInt, Int,
-                              Int, UByte, P(Float))
-glProgramUniformMatrix3fv = E('glProgramUniformMatrix3fv', None, UInt, Int,
-                              Int, UByte, P(Float))
-glProgramUniformMatrix4fv = E('glProgramUniformMatrix4fv', None, UInt, Int,
-                              Int, UByte, P(Float))
-glProgramUniformMatrix2dv = E('glProgramUniformMatrix2dv', None, UInt, Int,
-                              Int, UByte, P(Double))
-glProgramUniformMatrix3dv = E('glProgramUniformMatrix3dv', None, UInt, Int,
-                              Int, UByte, P(Double))
-glProgramUniformMatrix4dv = E('glProgramUniformMatrix4dv', None, UInt, Int,
-                              Int, UByte, P(Double))
-glProgramUniformMatrix2x3fv = E('glProgramUniformMatrix2x3fv', None, UInt,
-                                Int, Int, UByte, P(Float))
-glProgramUniformMatrix3x2fv = E('glProgramUniformMatrix3x2fv', None, UInt,
-                                Int, Int, UByte, P(Float))
-glProgramUniformMatrix2x4fv = E('glProgramUniformMatrix2x4fv', None, UInt,
-                                Int, Int, UByte, P(Float))
-glProgramUniformMatrix4x2fv = E('glProgramUniformMatrix4x2fv', None, UInt,
-                                Int, Int, UByte, P(Float))
-glProgramUniformMatrix3x4fv = E('glProgramUniformMatrix3x4fv', None, UInt,
-                                Int, Int, UByte, P(Float))
-glProgramUniformMatrix4x3fv = E('glProgramUniformMatrix4x3fv', None, UInt,
-                                Int, Int, UByte, P(Float))
-glProgramUniformMatrix2x3dv = E('glProgramUniformMatrix2x3dv', None, UInt,
-                                Int, Int, UByte, P(Double))
-glProgramUniformMatrix3x2dv = E('glProgramUniformMatrix3x2dv', None, UInt,
-                                Int, Int, UByte, P(Double))
-glProgramUniformMatrix2x4dv = E('glProgramUniformMatrix2x4dv', None, UInt,
-                                Int, Int, UByte, P(Double))
-glProgramUniformMatrix4x2dv = E('glProgramUniformMatrix4x2dv', None, UInt,
-                                Int, Int, UByte, P(Double))
-glProgramUniformMatrix3x4dv = E('glProgramUniformMatrix3x4dv', None, UInt,
-                                Int, Int, UByte, P(Double))
-glProgramUniformMatrix4x3dv = E('glProgramUniformMatrix4x3dv', None, UInt,
-                                Int, Int, UByte, P(Double))
+glProgramUniform4d = E(
+    'glProgramUniform4d', None, UInt, Int, Double, Double, Double, Double)
+glProgramUniform4dv = E(
+    'glProgramUniform4dv', None, UInt, Int, Int, P(Double))
+glProgramUniform4ui = E(
+    'glProgramUniform4ui', None, UInt, Int, UInt, UInt, UInt, UInt)
+glProgramUniform4uiv = E(
+    'glProgramUniform4uiv', None, UInt, Int, Int, P(UInt))
+glProgramUniformMatrix2fv = E(
+    'glProgramUniformMatrix2fv', None, UInt, Int, Int, UByte, P(Float))
+glProgramUniformMatrix3fv = E(
+    'glProgramUniformMatrix3fv', None, UInt, Int, Int, UByte, P(Float))
+glProgramUniformMatrix4fv = E(
+    'glProgramUniformMatrix4fv', None, UInt, Int, Int, UByte, P(Float))
+glProgramUniformMatrix2dv = E(
+    'glProgramUniformMatrix2dv', None, UInt, Int, Int, UByte, P(Double))
+glProgramUniformMatrix3dv = E(
+    'glProgramUniformMatrix3dv', None, UInt, Int, Int, UByte, P(Double))
+glProgramUniformMatrix4dv = E(
+    'glProgramUniformMatrix4dv', None, UInt, Int, Int, UByte, P(Double))
+glProgramUniformMatrix2x3fv = E(
+    'glProgramUniformMatrix2x3fv', None, UInt, Int, Int, UByte, P(Float))
+glProgramUniformMatrix3x2fv = E(
+    'glProgramUniformMatrix3x2fv', None, UInt, Int, Int, UByte, P(Float))
+glProgramUniformMatrix2x4fv = E(
+    'glProgramUniformMatrix2x4fv', None, UInt, Int, Int, UByte, P(Float))
+glProgramUniformMatrix4x2fv = E(
+    'glProgramUniformMatrix4x2fv', None, UInt, Int, Int, UByte, P(Float))
+glProgramUniformMatrix3x4fv = E(
+    'glProgramUniformMatrix3x4fv', None, UInt, Int, Int, UByte, P(Float))
+glProgramUniformMatrix4x3fv = E(
+    'glProgramUniformMatrix4x3fv', None, UInt, Int, Int, UByte, P(Float))
+glProgramUniformMatrix2x3dv = E(
+    'glProgramUniformMatrix2x3dv', None, UInt, Int, Int, UByte, P(Double))
+glProgramUniformMatrix3x2dv = E(
+    'glProgramUniformMatrix3x2dv', None, UInt, Int, Int, UByte, P(Double))
+glProgramUniformMatrix2x4dv = E(
+    'glProgramUniformMatrix2x4dv', None, UInt, Int, Int, UByte, P(Double))
+glProgramUniformMatrix4x2dv = E(
+    'glProgramUniformMatrix4x2dv', None, UInt, Int, Int, UByte, P(Double))
+glProgramUniformMatrix3x4dv = E(
+    'glProgramUniformMatrix3x4dv', None, UInt, Int, Int, UByte, P(Double))
+glProgramUniformMatrix4x3dv = E(
+    'glProgramUniformMatrix4x3dv', None, UInt, Int, Int, UByte, P(Double))
 glValidateProgramPipeline = E('glValidateProgramPipeline', None, UInt)
-glGetProgramPipelineInfoLog = E('glGetProgramPipelineInfoLog', None, UInt,
-                                Int, P(Int), CharP)
+glGetProgramPipelineInfoLog = E(
+    'glGetProgramPipelineInfoLog', None, UInt, Int, P(Int), CharP)
 glVertexAttribL1d = E('glVertexAttribL1d', None, UInt, Double)
 glVertexAttribL2d = E('glVertexAttribL2d', None, UInt, Double, Double)
 glVertexAttribL3d = E('glVertexAttribL3d', None, UInt, Double, Double, Double)
-glVertexAttribL4d = E('glVertexAttribL4d', None, UInt, Double, Double, Double,
-                      Double)
+glVertexAttribL4d = E(
+    'glVertexAttribL4d', None, UInt, Double, Double, Double, Double)
 glVertexAttribL1dv = E('glVertexAttribL1dv', None, UInt, P(Double))
 glVertexAttribL2dv = E('glVertexAttribL2dv', None, UInt, P(Double))
 glVertexAttribL3dv = E('glVertexAttribL3dv', None, UInt, P(Double))
 glVertexAttribL4dv = E('glVertexAttribL4dv', None, UInt, P(Double))
-glVertexAttribLPointer = E('glVertexAttribLPointer', None, UInt, Int, UInt,
-                           Int, VoidP)
+glVertexAttribLPointer = E(
+    'glVertexAttribLPointer', None, UInt, Int, UInt, Int, VoidP)
 glGetVertexAttribLdv = E('glGetVertexAttribLdv', None, UInt, UInt, P(Double))
 glViewportArrayv = E('glViewportArrayv', None, UInt, Int, P(Float))
-glViewportIndexedf = E('glViewportIndexedf', None, UInt, Float, Float, Float,
-                       Float)
+glViewportIndexedf = E(
+    'glViewportIndexedf', None, UInt, Float, Float, Float, Float)
 glViewportIndexedfv = E('glViewportIndexedfv', None, UInt, P(Float))
 glScissorArrayv = E('glScissorArrayv', None, UInt, Int, P(Int))
 glScissorIndexed = E('glScissorIndexed', None, UInt, Int, Int, Int, Int)

@@ -242,9 +242,9 @@ PFNGLBEGINTRANSFORMFEEDBACKPROC = C(None, UInt)
 PFNGLENDTRANSFORMFEEDBACKPROC = C(None)
 PFNGLBINDBUFFERRANGEPROC = C(None, UInt, UInt, UInt, Size, Size)
 PFNGLBINDBUFFERBASEPROC = C(None, UInt, UInt, UInt)
-PFNGLTRANSFORMFEEDBACKVARYINGSPROC = C(None, UInt, Int, CharP, UInt)
-PFNGLGETTRANSFORMFEEDBACKVARYINGPROC = C(None, UInt, UInt, Int, P(Int),
-                                         P(Int), P(UInt), CharP)
+PFNGLTRANSFORMFEEDBACKVARYINGSPROC = C(None, UInt, Int, P(CharP), UInt)
+PFNGLGETTRANSFORMFEEDBACKVARYINGPROC = C(
+    None, UInt, UInt, Int, P(Int), P(Int), P(UInt), CharP)
 PFNGLCLAMPCOLORPROC = C(None, UInt, UInt)
 PFNGLBEGINCONDITIONALRENDERPROC = C(None, UInt, UInt)
 PFNGLENDCONDITIONALRENDERPROC = C(None)
@@ -306,11 +306,11 @@ PFNGLFRAMEBUFFERTEXTURE1DPROC = C(None, UInt, UInt, UInt, UInt, Int)
 PFNGLFRAMEBUFFERTEXTURE2DPROC = C(None, UInt, UInt, UInt, UInt, Int)
 PFNGLFRAMEBUFFERTEXTURE3DPROC = C(None, UInt, UInt, UInt, UInt, Int, Int)
 PFNGLFRAMEBUFFERRENDERBUFFERPROC = C(None, UInt, UInt, UInt, UInt)
-PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC = C(None, UInt, UInt, UInt,
-                                                 P(Int))
+PFNGLGETFRAMEBUFFERATTACHMENTPARAMETERIVPROC = C(
+    None, UInt, UInt, UInt, P(Int))
 PFNGLGENERATEMIPMAPPROC = C(None, UInt)
-PFNGLBLITFRAMEBUFFERPROC = C(None, Int, Int, Int, Int, Int, Int, Int, Int,
-                             UInt, UInt)
+PFNGLBLITFRAMEBUFFERPROC = C(
+    None, Int, Int, Int, Int, Int, Int, Int, Int, UInt, UInt)
 PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC = C(None, UInt, Int, UInt, Int, Int)
 PFNGLFRAMEBUFFERTEXTURELAYERPROC = C(None, UInt, UInt, UInt, Int, Int)
 PFNGLMAPBUFFERRANGEPROC = C(VoidP, UInt, Size, Size, UInt)
@@ -329,15 +329,15 @@ glBeginTransformFeedback = E('glBeginTransformFeedback', None, UInt)
 glEndTransformFeedback = E('glEndTransformFeedback', None)
 glBindBufferRange = E('glBindBufferRange', None, UInt, UInt, UInt, Size, Size)
 glBindBufferBase = E('glBindBufferBase', None, UInt, UInt, UInt)
-glTransformFeedbackVaryings = E('glTransformFeedbackVaryings', None, UInt,
-                                Int, CharP, UInt)
+glTransformFeedbackVaryings = E(
+    'glTransformFeedbackVaryings', None, UInt, Int, P(CharP), UInt)
 glGetTransformFeedbackVarying = E('glGetTransformFeedbackVarying', None, UInt,
                                   UInt, Int, P(Int), P(Int), P(UInt), CharP)
 glClampColor = E('glClampColor', None, UInt, UInt)
 glBeginConditionalRender = E('glBeginConditionalRender', None, UInt, UInt)
 glEndConditionalRender = E('glEndConditionalRender', None)
-glVertexAttribIPointer = E('glVertexAttribIPointer', None, UInt, Int, UInt,
-                           Int, VoidP)
+glVertexAttribIPointer = E(
+    'glVertexAttribIPointer', None, UInt, Int, UInt, Int, VoidP)
 glGetVertexAttribIiv = E('glGetVertexAttribIiv', None, UInt, UInt, P(Int))
 glGetVertexAttribIuiv = E('glGetVertexAttribIuiv', None, UInt, UInt, P(UInt))
 glVertexAttribI1i = E('glVertexAttribI1i', None, UInt, Int)
@@ -347,8 +347,8 @@ glVertexAttribI4i = E('glVertexAttribI4i', None, UInt, Int, Int, Int, Int)
 glVertexAttribI1ui = E('glVertexAttribI1ui', None, UInt, UInt)
 glVertexAttribI2ui = E('glVertexAttribI2ui', None, UInt, UInt, UInt)
 glVertexAttribI3ui = E('glVertexAttribI3ui', None, UInt, UInt, UInt, UInt)
-glVertexAttribI4ui = E('glVertexAttribI4ui', None, UInt, UInt, UInt, UInt,
-                       UInt)
+glVertexAttribI4ui = E(
+    'glVertexAttribI4ui', None, UInt, UInt, UInt, UInt, UInt)
 glVertexAttribI1iv = E('glVertexAttribI1iv', None, UInt, P(Int))
 glVertexAttribI2iv = E('glVertexAttribI2iv', None, UInt, P(Int))
 glVertexAttribI3iv = E('glVertexAttribI3iv', None, UInt, P(Int))
@@ -386,33 +386,33 @@ glBindRenderbuffer = E('glBindRenderbuffer', None, UInt, UInt)
 glDeleteRenderbuffers = E('glDeleteRenderbuffers', None, Int, P(UInt))
 glGenRenderbuffers = E('glGenRenderbuffers', None, Int, P(UInt))
 glRenderbufferStorage = E('glRenderbufferStorage', None, UInt, UInt, Int, Int)
-glGetRenderbufferParameteriv = E('glGetRenderbufferParameteriv', None, UInt,
-                                 UInt, P(Int))
+glGetRenderbufferParameteriv = E(
+    'glGetRenderbufferParameteriv', None, UInt, UInt, P(Int))
 glIsFramebuffer = E('glIsFramebuffer', UByte, UInt)
 glBindFramebuffer = E('glBindFramebuffer', None, UInt, UInt)
 glDeleteFramebuffers = E('glDeleteFramebuffers', None, Int, P(UInt))
 glGenFramebuffers = E('glGenFramebuffers', None, Int, P(UInt))
 glCheckFramebufferStatus = E('glCheckFramebufferStatus', UInt, UInt)
-glFramebufferTexture1D = E('glFramebufferTexture1D', None, UInt, UInt, UInt,
-                           UInt, Int)
-glFramebufferTexture2D = E('glFramebufferTexture2D', None, UInt, UInt, UInt,
-                           UInt, Int)
-glFramebufferTexture3D = E('glFramebufferTexture3D', None, UInt, UInt, UInt,
-                           UInt, Int, Int)
-glFramebufferRenderbuffer = E('glFramebufferRenderbuffer', None, UInt, UInt,
-                              UInt, UInt)
+glFramebufferTexture1D = E(
+    'glFramebufferTexture1D', None, UInt, UInt, UInt, UInt, Int)
+glFramebufferTexture2D = E(
+    'glFramebufferTexture2D', None, UInt, UInt, UInt, UInt, Int)
+glFramebufferTexture3D = E(
+    'glFramebufferTexture3D', None, UInt, UInt, UInt, UInt, Int, Int)
+glFramebufferRenderbuffer = E(
+    'glFramebufferRenderbuffer', None, UInt, UInt, UInt, UInt)
 glGetFramebufferAttachmentParameteriv = E(
     'glGetFramebufferAttachmentParameteriv', None, UInt, UInt, UInt, P(Int))
 glGenerateMipmap = E('glGenerateMipmap', None, UInt)
 glBlitFramebuffer = E('glBlitFramebuffer', None, Int, Int, Int, Int, Int, Int,
                       Int, Int, UInt, UInt)
-glRenderbufferStorageMultisample = E('glRenderbufferStorageMultisample', None,
-                                     UInt, Int, UInt, Int, Int)
-glFramebufferTextureLayer = E('glFramebufferTextureLayer', None, UInt, UInt,
-                              UInt, Int, Int)
+glRenderbufferStorageMultisample = E(
+    'glRenderbufferStorageMultisample', None, UInt, Int, UInt, Int, Int)
+glFramebufferTextureLayer = E(
+    'glFramebufferTextureLayer', None, UInt, UInt, UInt, Int, Int)
 glMapBufferRange = E('glMapBufferRange', VoidP, UInt, Size, Size, UInt)
-glFlushMappedBufferRange = E('glFlushMappedBufferRange', None, UInt, Size,
-                             Size)
+glFlushMappedBufferRange = E(
+    'glFlushMappedBufferRange', None, UInt, Size, Size)
 glBindVertexArray = E('glBindVertexArray', None, UInt)
 glDeleteVertexArrays = E('glDeleteVertexArrays', None, Int, P(UInt))
 glGenVertexArrays = E('glGenVertexArrays', None, Int, P(UInt))
