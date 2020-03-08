@@ -50,7 +50,10 @@ def _gcc_make(target):
 
     os.system('gcc -Wall -shared %s -o %s' % (' '.join(_objects), target))
     for _source_name in _sources + _objects:
-        os.remove(_source_name)
+        try:
+            os.remove(_source_name)
+        except FileNotFoundError:
+            pass
 
 
 _target_file = os.path.join(_file_path, '_loadfile.py')

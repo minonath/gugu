@@ -1,3 +1,9 @@
+import queue
+
+
+QUEUE_LENGTH = 27
+
+
 class WindowPrototype(object):
     def __init__(self, title, size, fps):
         self.window_title = title
@@ -5,6 +11,20 @@ class WindowPrototype(object):
         self.mouse_x = 0
         self.mouse_y = 0
         self.window_interval = 1 / (fps + 1)  # 毕竟是小数计算，这个值有点偏差
+        self.sync_queue = queue.Queue()
+
+    def sync_push(self, *cmd):
+        self.sync_queue.put(cmd)
+
+    def sync_pull(self):
+        size = self.sync_queue.qsize()
+        if size:
+            size = size > QUEUE_LENGTH and QUEUE_LENGTH or size
+            while size:
+                cmd = self.sync_queue.get(0)
+                print(cmd[0].__name__, cmd[1:])
+                cmd[0](*cmd[1:])
+                size -= 1
 
     # 设置
     def window_set_title(self, title):
@@ -76,11 +96,15 @@ class WindowPrototype(object):
     def mouse_other_up(self, mouse_x, mouse_y):
         pass
 
-    def key_down(self):
+    def window_char(self, char):  # 用来接受文本消息
         pass
 
-    def key_up(self):
-        pass
-
-    def flags_changed(self):
-        pass
+    # 下面由 keyboard 接管了
+    # def key_down(self):
+    #     pass
+    #
+    # def key_up(self):
+    #     pass
+    #
+    # def flags_changed(self):
+    #     pass

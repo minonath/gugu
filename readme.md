@@ -1,9 +1,9 @@
 # gugu
+
+## 0.1 创建一个窗口
 ~~我有一个想法~~
 
 不，你没有
-
-## 0.1 创建一个窗口
 ```python
 from _how_to_create_a_window import create_mac_window
 create_mac_window()
@@ -35,8 +35,19 @@ compile_wrap_file()
 ```
 
 ## 0.5 修正窗口键盘和一些问题
-Rabbit Tank BestMatch! Are You Ready? ~~No~~
+Rabbit Tank BestMatch! Are You Ready?
+
+~~No~~
 ```python
 from gu.window.test_window import test
 test()
+```
+
+## 0.6 简易的 Win 窗口
+独夜无伴守灯下
+
+清风对面吹
+```python
+from gu.window.test_window import test_empty
+test_empty()
 ```

@@ -88,3 +88,7 @@ class Meow(Window):
 
 def test():
     Meow().window_start()
+
+
+def test_empty():
+    Window().window_start()

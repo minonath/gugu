@@ -3,14 +3,31 @@ import sys
 if sys.platform in ('win32', 'cygwin'):
     platform = 0
 
-    # keyboard
-    # esc f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
-    # grave 1 2 3 4 5 6 7 8 9 0 -(minus) =(equal) delete
-    # tab q w e r t y u i o p [(left_bracket) ](right_bracket) \(backslash)
-    # caps a s d f g h j k l ;(semicolon) '(quote) enter
-    # shift z x c v b n m ,(comma) .(period) /(slash) shift
-    # ctrl alt space ctrl alt left up down right
-    key_map = {}
+    key_map = {
+        'Esc': 1, 'F1': 59, 'F2': 60, 'F3': 61, 'F4': 62,
+        'F5': 63, 'F6': 64, 'F7': 65, 'F8': 66,
+        'F9': 67, 'F10 ': 68, 'F11 ': 69, 'F12 ': 70,
+
+        'Grave': 41, '1': 2, '2': 3, '3': 4, '4': 5,
+        '5': 6, '6': 7, '7': 8, '8': 9,
+        '9': 10, '0': 11, 'Minus': 12, 'Equal': 13, 'Delete': 14,
+
+        'Tab': 15, 'Q': 16, 'W': 17, 'E': 18, 'R': 19,
+        'T': 20, 'Y': 21, 'U': 22, 'I': 23, 'O': 24, 'P': 25,
+        'LeftBracket': 26, 'RightBracket': 27, 'Backslash': 43,
+
+        'Caps': 58, 'A': 30, 'S': 31, 'D': 32, 'F': 33,
+        'G': 34, 'H': 35, 'J': 36, 'K': 37,
+        'L': 38, 'Semicolon': 39, 'Quote': 40, 'Enter': 28,
+
+        'Shift': 42, 'Z': 44, 'X': 45, 'C': 46, 'V': 47,
+        'B': 48, 'N': 49, 'M': 50, 'Comma': 51,
+        'Period': 52, 'Slash': 53, 'RightShift': 54,
+
+        # Mac 上没有 RightCtrl，需要到 Win 上测试
+        'Ctrl': 29, 'Alt': 56, 'Space': 57, 'RightCtrl': 0x00,
+        'RightAlt': 312, 'Left ': 331, 'Up': 328,
+        'Down ': 336, 'Right': 333}
 
 elif sys.platform == 'darwin':
     platform = 1
@@ -21,13 +38,13 @@ elif sys.platform == 'darwin':
 
         'Grave': 0x32, '1': 0x12, '2': 0x13, '3': 0x14, '4': 0x15,
         '5': 0x17, '6': 0x16, '7': 0x1A, '8': 0x1C,
-        '9': 0x19, '0': 0x1D, 'Minus': 0x1B, 'Equal': 0x18,
+        '9': 0x19, '0': 0x1D, 'Minus': 0x1B, 'Equal': 0x18, 'Delete': 0x33,
 
         'Tab': 0x30, 'Q': 0x0C, 'W': 0x0D, 'E': 0x0E, 'R': 0x0F,
         'T': 0x11, 'Y': 0x10, 'U': 0x20, 'I': 0x22, 'O': 0x1F, 'P': 0x23,
         'LeftBracket': 0x21, 'RightBracket': 0x1E, 'Backslash': 0x2A,
 
-        'Caps': 0x39, 'A': 0x00, 'S': 0x01, 'D': 0x02, 'F': 0x03,  # 注意这里的 A
+        'Caps': 0x39, 'A': 0x00, 'S': 0x01, 'D': 0x02, 'F': 0x03,  # 注意 A
         'G': 0x05, 'H': 0x04, 'J': 0x26, 'K': 0x28,
         'L': 0x25, 'Semicolon': 0x29, 'Quote': 0x27, 'Enter': 0x24,
 
@@ -42,6 +59,14 @@ elif sys.platform == 'darwin':
 
 else:
     platform = 2
+
+    # keyboard
+    # esc f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
+    # grave 1 2 3 4 5 6 7 8 9 0 -(minus) =(equal) delete
+    # tab q w e r t y u i o p [(left_bracket) ](right_bracket) \(backslash)
+    # caps a s d f g h j k l ;(semicolon) '(quote) enter
+    # shift z x c v b n m ,(comma) .(period) /(slash) shift
+    # ctrl alt space ctrl alt left up down right
     key_map = {}
 
 
@@ -63,8 +88,8 @@ class Keyboard(object):
         self._keyboard_press_function = {}
         self._keyboard_release_function = {}
         self._keyboard_last_key = _NULL_KEY  # 如果有最后一个 key 表示是持续按压
-        self._keyboard_hold_function = {}
-        self._keyboard_hold_count = 0  # 用于记录 hold 函数的次数
+        # self._keyboard_hold_function = {}
+        # self._keyboard_hold_count = 0  # 用于记录 hold 函数的次数
         self._keyboard_flag = 0  # 快捷键按钮检测
 
     def __getattr__(self, item):
@@ -73,12 +98,12 @@ class Keyboard(object):
 
         if 'Press' == mode:
             mode = self._keyboard_press_function
-        elif 'Hold' == mode:
-            mode = self._keyboard_hold_function
+        # elif 'Hold' == mode:
+        #     mode = self._keyboard_hold_function
         elif 'Release' == mode:
             mode = self._keyboard_release_function
         else:
-            raise ValueError('Press Hold Release')
+            raise ValueError('Press Release')  # Hold
 
         key = key_map.get(underscore_split[-1], None)  # 最后一个文本为按键
         if key is None:
@@ -98,15 +123,15 @@ class Keyboard(object):
 
         return wrap_function
 
-    def __call__(self, key=None, hold=False):
-        if hold:  # 如果和鼠标混合点击，会导致这里按键持续
-            if self._keyboard_last_key != _NULL_KEY:
-                self._keyboard_hold_count += 1
-                self._keyboard_hold_function.get(
-                    self._keyboard_last_key, do_nothing
-                )(self._keyboard_hold_count)
+    def __call__(self, key=None):
+        # if hold:  # 如果和鼠标混合点击，会导致这里按键持续
+        #     if self._keyboard_last_key != _NULL_KEY:
+        #         self._keyboard_hold_count += 1
+        #         self._keyboard_hold_function.get(
+        #             self._keyboard_last_key, do_nothing
+        #         )(self._keyboard_hold_count)
 
-        elif key in _FLAG_MAP_CODE:  # 表示这是快捷键
+        if key in _FLAG_MAP_CODE:  # 表示这是快捷键
             flag = _FLAG_SIGN_BIT[_FLAG_MAP_CODE.index(key) // 2]
             if self._keyboard_flag & flag:
                 self._keyboard_flag &= ~flag
@@ -117,12 +142,12 @@ class Keyboard(object):
             key |= self._keyboard_flag
 
             if self._keyboard_last_key != _NULL_KEY:
-                self._keyboard_hold_count = 0
+                # self._keyboard_hold_count = 0
                 self._keyboard_last_key = _NULL_KEY
-                self._keyboard_release_function.get(key, do_nothing)()
+                self._keyboard_release_function.get(key, do_nothing)(key)
             else:
                 self._keyboard_last_key = key
-                self._keyboard_press_function.get(key, do_nothing)()
+                self._keyboard_press_function.get(key, do_nothing)(key)
 
     def user_set(self, user_dict):
         """

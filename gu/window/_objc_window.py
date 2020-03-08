@@ -59,6 +59,7 @@ NSTrackingEnabledDuringMouseDrag = 0x400
 
 TRACKING_OPTION = (NSTrackingMouseEnteredAndExited |  # 鼠标进出检测
                    NSTrackingMouseMoved |  # 鼠标移动检测
+                   NSTrackingCursorUpdate |  # 鼠标移动检测
                    NSTrackingActiveInActiveApp  # 激活检测
                    )
 
@@ -93,11 +94,11 @@ class MacWindow(WindowPrototype):
     def __init__(self, title='Gu', size=None, fps=30):
         if not size:  # 如果没有设置尺寸，以（非全屏）最大窗口创建。
             size = default_max_size()
+
         WindowPrototype.__init__(self, title, size, fps)
         self.window_run = False
         self.window_clock = time.perf_counter()
 
-        self.window_pool = None
         self.window_app = None
         self.window_window = None
         self.window_view = None
@@ -110,7 +111,7 @@ class MacWindow(WindowPrototype):
 
         @BIND(window_cls, 'canBecomeKeyWindow', 'B16@0:8')
         @BIND(view_cls, 'isOpaque', 'B16@0:8')
-        @BIND(view_cls, 'canBecomeKeyView', 'B16@0:8')
+        # @BIND(view_cls, 'canBecomeKeyView', 'B16@0:8')
         def do(cls, sel):
             return True
 
@@ -131,85 +132,91 @@ class MacWindow(WindowPrototype):
                             OBJC(notification, 'locationInWindow'), None)
             # 鼠标进入时重新定位
             self.mouse_x, self.mouse_y = position.mem_0, position.mem_1
-            self.mouse_enter(self.mouse_x, self.mouse_y)
+            self.sync_push(self.mouse_enter, self.mouse_x, self.mouse_y)
 
         @BIND(view_cls, 'mouseExited:', 'v24@0:8@16')
         def do(cls, sel, notification):
             position = OBJC(self.window_view, 'convertPoint:fromView:',
                             OBJC(notification, 'locationInWindow'), None)
-            self.mouse_exit(position.mem_0, position.mem_1)
+            self.sync_push(self.mouse_exit, position.mem_0, position.mem_1)
 
         @BIND(view_cls, 'mouseMoved:', 'v24@0:8@16')
-        def do(cls, sel, notification):  # 开始移动和结束移动各一次
+        def do(cls, sel, notification):
             position = OBJC(self.window_view, 'convertPoint:fromView:',
                             OBJC(notification, 'locationInWindow'), None)
             delta_x = position.mem_0 - self.mouse_x
             delta_y = position.mem_1 - self.mouse_y
-            if delta_x and delta_y:  # 屏蔽结束时的那次
-                self.mouse_move(delta_x, delta_y)
-                self.mouse_x, self.mouse_y = position.mem_0, position.mem_1
+            self.sync_push(self.mouse_move, delta_x, delta_y)
+            self.mouse_x, self.mouse_y = position.mem_0, position.mem_1
 
         @BIND(view_cls, 'scrollWheel:', 'v24@0:8@16')
         def do(cls, sel, notification):  # 一般鼠标用不到纵向，但是触控板会检测横向
-            delta_x = OBJC(notification, 'deltaX')  # 横向
-            delta_y = -OBJC(notification, 'deltaY')  # 纵向
-            self.mouse_scroll_wheel(int(delta_x), int(delta_y))
+            delta_x = int(OBJC(notification, 'deltaX'))  # 横向
+            delta_y = -int(OBJC(notification, 'deltaY'))  # 纵向
+            if delta_x or delta_y:  # 触控板会误触这个事件，这里排除误触
+                self.sync_push(self.mouse_scroll_wheel, delta_x, delta_y)
 
         @BIND(view_cls, 'mouseDown:', 'v24@0:8@16')
         def do(cls, sel, notification):
             position = OBJC(self.window_view, 'convertPoint:fromView:',
                             OBJC(notification, 'locationInWindow'), None)
-            self.mouse_down(position.mem_0, position.mem_1)
+            self.sync_push(self.mouse_down, position.mem_0, position.mem_1)
 
         @BIND(view_cls, 'mouseDragged:', 'v24@0:8@16')
         def do(cls, sel, notification):
             position = OBJC(self.window_view, 'convertPoint:fromView:',
                             OBJC(notification, 'locationInWindow'), None)
-            self.mouse_dragged(position.mem_0 - self.mouse_x,
-                               position.mem_1 - self.mouse_y)
+            self.sync_push(self.mouse_dragged, position.mem_0 - self.mouse_x,
+                           position.mem_1 - self.mouse_y)
             self.mouse_x, self.mouse_y = position.mem_0, position.mem_1
 
         @BIND(view_cls, 'mouseUp:', 'v24@0:8@16')
         def do(cls, sel, notification):
             position = OBJC(self.window_view, 'convertPoint:fromView:',
                             OBJC(notification, 'locationInWindow'), None)
-            self.mouse_up(position.mem_0, position.mem_1)
+            self.sync_push(self.mouse_up, position.mem_0, position.mem_1)
 
         @BIND(view_cls, 'rightMouseDown:', 'v24@0:8@16')
         def do(cls, sel, notification):
             position = OBJC(self.window_view, 'convertPoint:fromView:',
                             OBJC(notification, 'locationInWindow'), None)
-            self.mouse_right_down(position.mem_0, position.mem_1)
+            self.sync_push(
+                self.mouse_right_down, position.mem_0, position.mem_1)
 
         @BIND(view_cls, 'rightMouseDragged:', 'v24@0:8@16')
         def do(cls, sel, notification):
             position = OBJC(self.window_view, 'convertPoint:fromView:',
                             OBJC(notification, 'locationInWindow'), None)
-            self.mouse_right_dragged(position.mem_0, position.mem_1)
+            self.sync_push(
+                self.mouse_right_dragged, position.mem_0, position.mem_1)
 
         @BIND(view_cls, 'rightMouseUp:', 'v24@0:8@16')
         def do(cls, sel, notification):
             position = OBJC(self.window_view, 'convertPoint:fromView:',
                             OBJC(notification, 'locationInWindow'), None)
-            self.mouse_right_up(position.mem_0, position.mem_1)
+            self.sync_push(
+                self.mouse_right_up, position.mem_0, position.mem_1)
 
         @BIND(view_cls, 'otherMouseDown:', 'v24@0:8@16')
         def do(cls, sel, notification):
             position = OBJC(self.window_view, 'convertPoint:fromView:',
                             OBJC(notification, 'locationInWindow'), None)
-            self.mouse_other_down(position.mem_0, position.mem_1)
+            self.sync_push(
+                self.mouse_other_down, position.mem_0, position.mem_1)
 
         @BIND(view_cls, 'otherMouseDragged:', 'v24@0:8@16')
         def do(cls, sel, notification):
             position = OBJC(self.window_view, 'convertPoint:fromView:',
                             OBJC(notification, 'locationInWindow'), None)
-            self.mouse_other_dragged(position.mem_0, position.mem_1)
+            self.sync_push(
+                self.mouse_other_dragged, position.mem_0, position.mem_1)
 
         @BIND(view_cls, 'otherMouseUp:', 'v24@0:8@16')
         def do(cls, sel, notification):
             position = OBJC(self.window_view, 'convertPoint:fromView:',
                             OBJC(notification, 'locationInWindow'), None)
-            self.mouse_other_up(position.mem_0, position.mem_1)
+            self.sync_push(
+                self.mouse_other_up, position.mem_0, position.mem_1)
 
         @BIND(delegate_cls, 'windowShouldClose:', 'B24@0:8@16')
         def do(cls, sel, notification):  # 参数是 Delegate类，SEL，消息
@@ -223,6 +230,9 @@ class MacWindow(WindowPrototype):
         @BIND(delegate_cls, 'windowDidEndLiveResize:', 'B24@0:8@16')
         def do(cls, sel, notification):
             self.create_tracking_area()
+            area = OBJC(self.window_view, 'bounds')
+            self.sync_push(self.window_resize, area.mem_1.mem_0,
+                           area.mem_1.mem_1)
 
         @BIND(delegate_cls, 'windowWillMiniaturize:', 'B24@0:8@16')
         def do(cls, sel, notification):
@@ -347,7 +357,8 @@ class MacWindow(WindowPrototype):
     def finish_launch(self):
         window = self.window_window
 
-        OBJC(window, 'setAcceptsMouseMovedEvents:', True)  # 可以接受鼠标移动事件
+        # 窗口如果接受鼠标事件，就会重复 View 的鼠标事件
+        OBJC(window, 'setAcceptsMouseMovedEvents:', False)  # 不接受鼠标移动事件
         OBJC(window, 'setReleasedWhenClosed:', True)  # 关闭时回收
         OBJC(window, 'useOptimizedDrawing:', False)  # 不需要专心绘制 View
         # 改变尺寸时不保留内容
@@ -370,9 +381,8 @@ class MacWindow(WindowPrototype):
                          mouse_pos, None)
         self.mouse_x = mouse_pos.mem_0
         self.mouse_y = mouse_pos.mem_1
-        print(self.mouse_x, self.mouse_y)
 
-    def _sleep_time(self):
+    def sleep_time(self):
         """
         沉睡一段时间，控制帧数
         """
@@ -389,30 +399,29 @@ class MacWindow(WindowPrototype):
     def handle_event(self):
         app = self.window_app
 
-        event = OBJC(app, 'nextEventMatchingMask:untilDate:inMode:dequeue:',
-                     NSAnyEventMask, OBJC('NSDate', 'distantPast'),
-                     NSDefaultRunLoopMode, True)
+        while True:
+            event = OBJC(
+                app, 'nextEventMatchingMask:untilDate:inMode:dequeue:',
+                NSAnyEventMask, OBJC('NSDate', 'distantPast'),
+                NSDefaultRunLoopMode, True)
 
-        if event:
+            if not event:
+                break
+
             event_type = OBJC(event, 'type')
-
             OBJC(app, 'sendEvent:', event)
 
-            if event_type == NSEventTypeKeyDown:  # KeyDown
-                if OBJC(event, 'isARepeat'):
-                    gu.keyboard(hold=True)
-                else:
-                    gu.keyboard(OBJC(event, 'keyCode'))
-
-            elif (event_type == NSEventTypeKeyUp or
-                  event_type == NSEventTypeFlagsChanged):
+            if ((event_type == NSEventTypeKeyDown and
+                 not OBJC(event, 'isARepeat')) or
+                    event_type == NSEventTypeKeyUp or
+                    event_type == NSEventTypeFlagsChanged):
                 gu.keyboard(OBJC(event, 'keyCode'))
 
     def window_start(self):
         gu.window = self
         self.window_run = True
 
-        self.window_pool = OBJC(OBJC('NSAutoreleasePool', 'alloc'), 'init')
+        pool = OBJC(OBJC('NSAutoreleasePool', 'alloc'), 'init')
         self.window_app = OBJC('NSApplication', 'sharedApplication')
         OBJC(self.window_app, 'setActivationPolicy:', 0)
 
@@ -430,8 +439,9 @@ class MacWindow(WindowPrototype):
 
             self.window_gl_init()
             while self.window_run:
-                interval = self._sleep_time()  # 上一帧的运行时间
+                interval = self.sleep_time()  # 上一帧的运行时间
                 OBJC(context, 'makeCurrentContext')
+                self.sync_pull()
                 self.window_gl_clear()
                 self.window_gl_render(interval)
                 OBJC(context, 'flushBuffer')
@@ -440,7 +450,7 @@ class MacWindow(WindowPrototype):
 
             OBJC('NSOpenGLContext', 'clearCurrentContext')
 
-        OBJC(self.window_pool, 'drain')
+        OBJC(pool, 'drain')
 
     def window_stop(self):
         self.window_run = False
