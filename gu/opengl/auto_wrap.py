@@ -1,8 +1,9 @@
-import pathlib
 import ctypes
-from gu.system import gu
+import pathlib
 
-if gu.platform == 0:
+from ..system.other import SYSTEM_PLATFORM, bind_dynamic_library
+
+if SYSTEM_PLATFORM == 1:
     class E(object):
         def __init__(self, name, restype, *arg_types):
             self._func = None
@@ -18,24 +19,23 @@ if gu.platform == 0:
             return self._func(*args)
 
 
-    gl = gu.bind_dynamic_library(ctypes.windll.opengl32, E)
+    gl = bind_dynamic_library(ctypes.windll.opengl32, E)
     _wglGetFunction = gl('wglGetP''rocAddress',
                          ctypes.CFUNCTYPE(ctypes.POINTER(ctypes.c_int)),
                          ctypes.c_char_p)
 
 
-elif gu.platform == 1:
-    E = gl = gu.bind_dynamic_library(ctypes.cdll.LoadLibrary(
+elif SYSTEM_PLATFORM == 2:
+    E = gl = bind_dynamic_library(ctypes.cdll.LoadLibrary(
         '/System/Library/Framework/OpenGL.framework/OpenGL'
     ))
 
 else:
     import ctypes.util
 
-    E = gl = gu.bind_dynamic_library(ctypes.cdll.LoadLibrary(
+    E = gl = bind_dynamic_library(ctypes.cdll.LoadLibrary(
         ctypes.util.find_library('OpenGL')
     ))
-
 
 Int = ctypes.c_int
 UInt = ctypes.c_uint
@@ -53,7 +53,12 @@ Size = ctypes.c_size_t
 UInt64 = ctypes.c_uint64
 Int64 = ctypes.c_int64
 Int32 = ctypes.c_int32
-Handle = Size if gu.platform == 1 else UInt
+if SYSTEM_PLATFORM == 1:
+    Handle = UInt
+elif SYSTEM_PLATFORM == 2:
+    Handle = Size
+else:
+    raise NotImplementedError
 
 
 class __GLSync(ctypes.Structure):
@@ -61,7 +66,6 @@ class __GLSync(ctypes.Structure):
 
 
 GLSync = ctypes.POINTER(__GLSync)
-
 
 _ShortName = {
     'GLenum': 'UInt',
@@ -270,3 +274,6 @@ def compile_wrap_file():
     with _current_directory.joinpath('__init__.py').open(mode='w') as f:
         f.write(''.join('from .%s import *\n' % k for k in _gl_wrap_name))
         f.write('\n\nclass OpenGLError(Exception):\n    ...\n')
+        f.write('\n\ndef gl_getattr(name):\n    return globals().get(name)\n')
+        f.write('\n\ndef gl_tostring(e):\n    ')
+        f.write('return tuple(k for k, v in globals().items() if v == e)\n')

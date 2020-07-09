@@ -21,3 +21,11 @@ from ._GL_46 import *
 
 class OpenGLError(Exception):
     ...
+
+
+def gl_getattr(name):
+    return globals().get(name)
+
+
+def gl_tostring(e):
+    return tuple(k for k, v in globals().items() if v == e)

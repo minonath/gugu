@@ -18,7 +18,7 @@ def print_objc(objc_id):
     return object_getClassName(objc_id).decode('utf-8')
 
 
-gu.meow = True
+gu.meow = False
 
 _key_enum = {
     'kVK_ANSI_A': 0x00, 'kVK_ANSI_S': 0x01, 'kVK_ANSI_D': 0x02,
@@ -165,8 +165,8 @@ def _create_delegate():
 
     @BIND(_delegate, 'windowShouldClose:', 'B24@0:8@16')
     def call(cls, sel, notification):
-        gu.Meow = False
-        return False
+        gu.meow = False
+        return True
 
     @BIND(_delegate, 'windowDidMove:', 'v24@0:8@16')
     def call(cls, sel, notification):
@@ -243,6 +243,7 @@ def create_mac_window(gl_obj=_OpenGLWindow):
     app = OBJC('NSApplication', 'sharedApplication')
 
     if not OBJC(app, 'isRunning'):
+        gu.meow = True
         _ignore_error()
         _create_menu(app)
         context = _create_context()
