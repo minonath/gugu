@@ -3,12 +3,12 @@
 https://opensource.apple.com/source/objc4/objc4-756.2/
 """
 import ctypes
-from _how_to_create_a_window import _gu_util
 from ._objc_encoding import objc_encodings
+from ..system.other import bind_dynamic_library
 
 # 导入 objc 动态库，并制作 objc 绑定函数
 _objc_library = ctypes.cdll.LoadLibrary('/usr/lib/lib''objc.dylib')
-objc = _gu_util.bind_dynamic_library(_objc_library)
+objc = bind_dynamic_library(_objc_library)
 
 
 class _ObjCObject(ctypes.Structure):

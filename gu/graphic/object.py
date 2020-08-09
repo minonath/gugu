@@ -16,10 +16,13 @@ class OpenGLObjectManager(object):
             _prevent_auto_collect.pop(item).gl_release()
             super(OpenGLObjectManager, self).__delattr__(item)
 
-        gu.window.window_queue.put((_inner_thread,))
+        if threading.current_thread() == threading.main_thread():
+            _inner_thread()
+        else:
+            gu.window.window_queue.put((_inner_thread,))
 
 
-gu.context.objects = gl_objects = OpenGLObjectManager()
+gl_objects = OpenGLObjectManager()
 
 
 class PrintClass(type):
@@ -53,4 +56,4 @@ class OpenGLObject(metaclass=PrintClass):
         raise NotImplementedError
 
 
-__all__ = ['OpenGLObject']
+__all__ = ['gl_objects', 'OpenGLObject']

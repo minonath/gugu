@@ -164,11 +164,15 @@ def bind_dynamic_library(lib, fallback=None):
     return _bind
 
 
+def null_function(*args, **kwargs):
+    ...
+
+
 def print_exception(e):
     print(''.join(traceback.format_exception(e, e, e.__traceback__)))
 
 
 __all__ = [
     'KEY_MAP', 'SYSTEM_PLATFORM', 'Array', 'PrintClass',
-    'bind_dynamic_library', 'print_exception',
+    'bind_dynamic_library', 'null_function', 'print_exception',
 ]

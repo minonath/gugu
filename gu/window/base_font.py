@@ -1,0 +1,13 @@
+
+class FontInterface:
+    def list_all_font(self):
+        ...
+
+    def cache_font(self, font_name):
+        ...
+
+    def get_alpha_bytes(self, font_name, text_list):
+        ...
+
+    def get_full_bytes(self, font_name, text_list):
+        ...

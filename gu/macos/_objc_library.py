@@ -1,10 +1,14 @@
-
 import ctypes
+
 from ._objc_encoding import objc_type_from_encoding, objc_encodings
-from ._objc_runtime import *
+from ._objc_runtime import (
+    sel_registerName, method_getImplementation, method_getTypeEncoding,
+    objc_getClass, class_getName, class_getClassMethod, object_getClass,
+    class_getInstanceMethod, objc_allocateClassPair, objc_registerClassPair,
+    object_getClassName, class_addMethod
+)
 
-
-# 这里把 Foundation 的函数库导入 Runtime 否则 Runtime 里面找不到 NSString 类
+# 这里把 Foundation 的函数库导入 Runtime 否则 Runtime 里面找不到 NSString 类。
 ctypes.cdll.LoadLibrary(
     '/System/Library/Frameworks/Foundation.framework/Foundation'
 )
@@ -14,9 +18,9 @@ _method_cache = {}
 
 
 def _objc_method(class_type, get_function, method_name):
-    _selector = sel_registerName(method_name)  # 注册 Sel
+    _selector = sel_registerName(method_name)  # 注册 Sel 。
 
-    _method = get_function(class_type, _selector)  # 提取 Method 信息
+    _method = get_function(class_type, _selector)  # 提取 Method 信息。
     _implementation = method_getImplementation(_method)
     _encoding = method_getTypeEncoding(_method)
     if not _encoding:
@@ -35,14 +39,14 @@ def _objc_method(class_type, get_function, method_name):
 
 def _objc_class(name_or_instance, method_name):
     method_name = method_name.encode('utf-8')
-    if isinstance(name_or_instance, str):  # 表示这是一个类
+    if isinstance(name_or_instance, str):  # 表示这是一个类。
         _class_name = name_or_instance.encode('utf-8')
 
         if _class_name in _class_cache:
             _class_type = _class_cache[_class_name]
         else:
             _class_type = objc_getClass(_class_name)
-            if class_getName(_class_type) == b'nil':
+            if class_getName(_class_type) == b'nil':  # 未拥有相关类会调用错误。
                 raise NameError('Class<%s> Not In Runtime.' % _class_name)
             _class_cache[_class_name] = _class_type
 
@@ -99,6 +103,9 @@ def _objc_make_sel(text):
 
 
 def _objc_create_class(class_name, super_name):
+    subclass = objc_getClass(class_name.encode('utf-8'))
+    if class_getName(subclass) != b'nil':  # 重复加载会引发错误。
+        raise NameError('Class<%s> Is Created.' % class_name)
     superclass = objc_getClass(super_name.encode('utf-8'))
     subclass = objc_allocateClassPair(
         superclass, class_name.encode('utf-8'), 0
