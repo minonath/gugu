@@ -1,4 +1,4 @@
-from .auto_wrap import *
+from gu.system import *
 
 GL_VERSION_1_5 = 1
 GL_BUFFER_SIZE = 0x8764

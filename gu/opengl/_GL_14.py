@@ -1,4 +1,4 @@
-from .auto_wrap import *
+from gu.system import *
 
 GL_VERSION_1_4 = 1
 GL_BLEND_DST_RGB = 0x80C8
@@ -40,7 +40,8 @@ PFNGLBLENDEQUATIONPROC = C(None, UInt)
 glBlendFuncSeparate = E('glBlendFuncSeparate', None, UInt, UInt, UInt, UInt)
 glMultiDrawArrays = E('glMultiDrawArrays', None, UInt, P(Int), P(Int), Int)
 glMultiDrawElements = E(
-    'glMultiDrawElements', None, UInt, P(Int), UInt, P(VoidP), Int)
+    'glMultiDrawElements', None, UInt, P(Int), UInt, P(VoidP), Int
+)
 glPointParameterf = E('glPointParameterf', None, UInt, Float)
 glPointParameterfv = E('glPointParameterfv', None, UInt, P(Float))
 glPointParameteri = E('glPointParameteri', None, UInt, Int)

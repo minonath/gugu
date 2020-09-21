@@ -1,4 +1,4 @@
-from .auto_wrap import *
+from gu.system import *
 
 GL_VERSION_3_1 = 1
 GL_SAMPLER_2D_RECT = 0x8B63
@@ -76,22 +76,29 @@ PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC = C(None, UInt, UInt, Int, P(Int), CharP)
 PFNGLUNIFORMBLOCKBINDINGPROC = C(None, UInt, UInt, UInt)
 glDrawArraysInstanced = E('glDrawArraysInstanced', None, UInt, Int, Int, Int)
 glDrawElementsInstanced = E(
-    'glDrawElementsInstanced', None, UInt, Int, UInt, VoidP, Int)
+    'glDrawElementsInstanced', None, UInt, Int, UInt, VoidP, Int
+)
 glTexBuffer = E('glTexBuffer', None, UInt, UInt, UInt)
 glPrimitiveRestartIndex = E('glPrimitiveRestartIndex', None, UInt)
 glCopyBufferSubData = E(
-    'glCopyBufferSubData', None, UInt, UInt, Size, Size, Size)
+    'glCopyBufferSubData', None, UInt, UInt, Size, Size, Size
+)
 glGetUniformIndices = E(
-    'glGetUniformIndices', None, UInt, Int, P(CharP), P(UInt))
+    'glGetUniformIndices', None, UInt, Int, P(CharP), P(UInt)
+)
 glGetActiveUniformsiv = E(
-    'glGetActiveUniformsiv', None, UInt, Int, P(UInt), UInt, P(Int))
+    'glGetActiveUniformsiv', None, UInt, Int, P(UInt), UInt, P(Int)
+)
 glGetActiveUniformName = E(
-    'glGetActiveUniformName', None, UInt, UInt, Int, P(Int), CharP)
+    'glGetActiveUniformName', None, UInt, UInt, Int, P(Int), CharP
+)
 glGetUniformBlockIndex = E('glGetUniformBlockIndex', UInt, UInt, CharP)
 glGetActiveUniformBlockiv = E(
-    'glGetActiveUniformBlockiv', None, UInt, UInt, UInt, P(Int))
+    'glGetActiveUniformBlockiv', None, UInt, UInt, UInt, P(Int)
+)
 glGetActiveUniformBlockName = E(
-    'glGetActiveUniformBlockName', None, UInt, UInt, Int, P(Int), CharP)
+    'glGetActiveUniformBlockName', None, UInt, UInt, Int, P(Int), CharP
+)
 glUniformBlockBinding = E('glUniformBlockBinding', None, UInt, UInt, UInt)
 
 __all__ = [

@@ -1,4 +1,4 @@
-from .auto_wrap import *
+from gu.system import *
 
 GL_VERSION_4_3 = 1
 GLDEBUGPROC = C(None, UInt, UInt, UInt, UInt, Int, CharP, VoidP)
@@ -262,37 +262,45 @@ GL_MAX_VERTEX_ATTRIB_BINDINGS = 0x82DA
 GL_VERTEX_BINDING_BUFFER = 0x8F4F
 PFNGLCLEARBUFFERDATAPROC = C(None, UInt, UInt, UInt, UInt, VoidP)
 PFNGLCLEARBUFFERSUBDATAPROC = C(
-    None, UInt, UInt, Size, Size, UInt, UInt, VoidP)
+    None, UInt, UInt, Size, Size, UInt, UInt, VoidP
+)
 PFNGLDISPATCHCOMPUTEPROC = C(None, UInt, UInt, UInt)
 PFNGLDISPATCHCOMPUTEINDIRECTPROC = C(None, Size)
-PFNGLCOPYIMAGESUBDATAPROC = C(None, UInt, UInt, Int, Int, Int, Int, UInt,
-                              UInt, Int, Int, Int, Int, Int, Int, Int)
+PFNGLCOPYIMAGESUBDATAPROC = C(
+    None, UInt, UInt, Int, Int, Int, Int, UInt, UInt, Int, Int, Int, Int, Int,
+    Int, Int
+)
 PFNGLFRAMEBUFFERPARAMETERIPROC = C(None, UInt, UInt, Int)
 PFNGLGETFRAMEBUFFERPARAMETERIVPROC = C(None, UInt, UInt, P(Int))
 PFNGLGETINTERNALFORMATI64VPROC = C(None, UInt, UInt, UInt, Int, P(Int64))
 PFNGLINVALIDATETEXSUBIMAGEPROC = C(
-    None, UInt, Int, Int, Int, Int, Int, Int, Int)
+    None, UInt, Int, Int, Int, Int, Int, Int, Int
+)
 PFNGLINVALIDATETEXIMAGEPROC = C(None, UInt, Int)
 PFNGLINVALIDATEBUFFERSUBDATAPROC = C(None, UInt, Size, Size)
 PFNGLINVALIDATEBUFFERDATAPROC = C(None, UInt)
 PFNGLINVALIDATEFRAMEBUFFERPROC = C(None, UInt, Int, P(UInt))
 PFNGLINVALIDATESUBFRAMEBUFFERPROC = C(
-    None, UInt, Int, P(UInt), Int, Int, Int, Int)
+    None, UInt, Int, P(UInt), Int, Int, Int, Int
+)
 PFNGLMULTIDRAWARRAYSINDIRECTPROC = C(None, UInt, VoidP, Int, Int)
 PFNGLMULTIDRAWELEMENTSINDIRECTPROC = C(None, UInt, UInt, VoidP, Int, Int)
 PFNGLGETPROGRAMINTERFACEIVPROC = C(None, UInt, UInt, UInt, P(Int))
 PFNGLGETPROGRAMRESOURCEINDEXPROC = C(UInt, UInt, UInt, CharP)
 PFNGLGETPROGRAMRESOURCENAMEPROC = C(
-    None, UInt, UInt, UInt, Int, P(Int), CharP)
+    None, UInt, UInt, UInt, Int, P(Int), CharP
+)
 PFNGLGETPROGRAMRESOURCEIVPROC = C(
-    None, UInt, UInt, UInt, Int, P(UInt), Int, P(Int), P(Int))
+    None, UInt, UInt, UInt, Int, P(UInt), Int, P(Int), P(Int)
+)
 PFNGLGETPROGRAMRESOURCELOCATIONPROC = C(Int, UInt, UInt, CharP)
 PFNGLGETPROGRAMRESOURCELOCATIONINDEXPROC = C(Int, UInt, UInt, CharP)
 PFNGLSHADERSTORAGEBLOCKBINDINGPROC = C(None, UInt, UInt, UInt)
 PFNGLTEXBUFFERRANGEPROC = C(None, UInt, UInt, UInt, Size, Size)
 PFNGLTEXSTORAGE2DMULTISAMPLEPROC = C(None, UInt, Int, UInt, Int, Int, UByte)
 PFNGLTEXSTORAGE3DMULTISAMPLEPROC = C(
-    None, UInt, Int, UInt, Int, Int, Int, UByte)
+    None, UInt, Int, UInt, Int, Int, Int, UByte
+)
 PFNGLTEXTUREVIEWPROC = C(None, UInt, UInt, UInt, UInt, UInt, UInt, UInt, UInt)
 PFNGLBINDVERTEXBUFFERPROC = C(None, UInt, UInt, Size, Int)
 PFNGLVERTEXATTRIBFORMATPROC = C(None, UInt, Int, UInt, UByte, UInt)
@@ -304,7 +312,8 @@ PFNGLDEBUGMESSAGECONTROLPROC = C(None, UInt, UInt, UInt, Int, P(UInt), UByte)
 PFNGLDEBUGMESSAGEINSERTPROC = C(None, UInt, UInt, UInt, UInt, Int, CharP)
 PFNGLDEBUGMESSAGECALLBACKPROC = C(None, GLDEBUGPROC, VoidP)
 PFNGLGETDEBUGMESSAGELOGPROC = C(
-    UInt, UInt, Int, P(UInt), P(UInt), P(UInt), P(UInt), P(Int), CharP)
+    UInt, UInt, Int, P(UInt), P(UInt), P(UInt), P(UInt), P(Int), CharP
+)
 PFNGLPUSHDEBUGGROUPPROC = C(None, UInt, UInt, Int, CharP)
 PFNGLPOPDEBUGGROUPPROC = C(None)
 PFNGLOBJECTLABELPROC = C(None, UInt, UInt, Int, CharP)
@@ -312,77 +321,107 @@ PFNGLGETOBJECTLABELPROC = C(None, UInt, UInt, Int, P(Int), CharP)
 PFNGLOBJECTPTRLABELPROC = C(None, VoidP, Int, CharP)
 PFNGLGETOBJECTPTRLABELPROC = C(None, VoidP, Int, P(Int), CharP)
 glClearBufferData = E(
-    'glClearBufferData', None, UInt, UInt, UInt, UInt, VoidP)
+    'glClearBufferData', None, UInt, UInt, UInt, UInt, VoidP
+)
 glClearBufferSubData = E(
-    'glClearBufferSubData', None, UInt, UInt, Size, Size, UInt, UInt, VoidP)
+    'glClearBufferSubData', None, UInt, UInt, Size, Size, UInt, UInt, VoidP
+)
 glDispatchCompute = E('glDispatchCompute', None, UInt, UInt, UInt)
 glDispatchComputeIndirect = E('glDispatchComputeIndirect', None, Size)
 glCopyImageSubData = E(
-    'glCopyImageSubData', None, UInt, UInt, Int, Int, Int, Int,
-    UInt, UInt, Int, Int, Int, Int, Int, Int, Int)
+    'glCopyImageSubData', None, UInt, UInt, Int, Int, Int, Int, UInt, UInt,
+    Int, Int, Int, Int, Int, Int, Int
+)
 glFramebufferParameteri = E('glFramebufferParameteri', None, UInt, UInt, Int)
 glGetFramebufferParameteriv = E(
-    'glGetFramebufferParameteriv', None, UInt, UInt, P(Int))
+    'glGetFramebufferParameteriv', None, UInt, UInt, P(Int)
+)
 glGetInternalformati64v = E(
-    'glGetInternalformati64v', None, UInt, UInt, UInt, Int, P(Int64))
+    'glGetInternalformati64v', None, UInt, UInt, UInt, Int, P(Int64)
+)
 glInvalidateTexSubImage = E(
-    'glInvalidateTexSubImage', None, UInt, Int, Int, Int, Int, Int, Int, Int)
+    'glInvalidateTexSubImage', None, UInt, Int, Int, Int, Int, Int, Int, Int
+)
 glInvalidateTexImage = E('glInvalidateTexImage', None, UInt, Int)
 glInvalidateBufferSubData = E(
-    'glInvalidateBufferSubData', None, UInt, Size, Size)
+    'glInvalidateBufferSubData', None, UInt, Size, Size
+)
 glInvalidateBufferData = E('glInvalidateBufferData', None, UInt)
 glInvalidateFramebuffer = E(
-    'glInvalidateFramebuffer', None, UInt, Int, P(UInt))
-glInvalidateSubFramebuffer = E('glInvalidateSubFramebuffer', None, UInt, Int,
-                               P(UInt), Int, Int, Int, Int)
+    'glInvalidateFramebuffer', None, UInt, Int, P(UInt)
+)
+glInvalidateSubFramebuffer = E(
+    'glInvalidateSubFramebuffer', None, UInt, Int, P(UInt), Int, Int, Int, Int
+)
 glMultiDrawArraysIndirect = E(
-    'glMultiDrawArraysIndirect', None, UInt, VoidP, Int, Int)
+    'glMultiDrawArraysIndirect', None, UInt, VoidP, Int, Int
+)
 glMultiDrawElementsIndirect = E(
-    'glMultiDrawElementsIndirect', None, UInt, UInt, VoidP, Int, Int)
+    'glMultiDrawElementsIndirect', None, UInt, UInt, VoidP, Int, Int
+)
 glGetProgramInterfaceiv = E(
-    'glGetProgramInterfaceiv', None, UInt, UInt, UInt, P(Int))
+    'glGetProgramInterfaceiv', None, UInt, UInt, UInt, P(Int)
+)
 glGetProgramResourceIndex = E(
-    'glGetProgramResourceIndex', UInt, UInt, UInt, CharP)
+    'glGetProgramResourceIndex', UInt, UInt, UInt, CharP
+)
 glGetProgramResourceName = E(
-    'glGetProgramResourceName', None, UInt, UInt, UInt, Int, P(Int), CharP)
-glGetProgramResourceiv = E('glGetProgramResourceiv', None, UInt, UInt, UInt,
-                           Int, P(UInt), Int, P(Int), P(Int))
+    'glGetProgramResourceName', None, UInt, UInt, UInt, Int, P(Int), CharP
+)
+glGetProgramResourceiv = E(
+    'glGetProgramResourceiv', None, UInt, UInt, UInt, Int, P(UInt), Int,
+    P(Int), P(Int)
+)
 glGetProgramResourceLocation = E(
-    'glGetProgramResourceLocation', Int, UInt, UInt, CharP)
+    'glGetProgramResourceLocation', Int, UInt, UInt, CharP
+)
 glGetProgramResourceLocationIndex = E(
-    'glGetProgramResourceLocationIndex', Int, UInt, UInt, CharP)
+    'glGetProgramResourceLocationIndex', Int, UInt, UInt, CharP
+)
 glShaderStorageBlockBinding = E(
-    'glShaderStorageBlockBinding', None, UInt, UInt, UInt)
+    'glShaderStorageBlockBinding', None, UInt, UInt, UInt
+)
 glTexBufferRange = E('glTexBufferRange', None, UInt, UInt, UInt, Size, Size)
 glTexStorage2DMultisample = E(
-    'glTexStorage2DMultisample', None, UInt, Int, UInt, Int, Int, UByte)
+    'glTexStorage2DMultisample', None, UInt, Int, UInt, Int, Int, UByte
+)
 glTexStorage3DMultisample = E(
-    'glTexStorage3DMultisample', None, UInt, Int, UInt, Int, Int, Int, UByte)
+    'glTexStorage3DMultisample', None, UInt, Int, UInt, Int, Int, Int, UByte
+)
 glTextureView = E(
-    'glTextureView', None, UInt, UInt, UInt, UInt, UInt, UInt, UInt, UInt)
+    'glTextureView', None, UInt, UInt, UInt, UInt, UInt, UInt, UInt, UInt
+)
 glBindVertexBuffer = E('glBindVertexBuffer', None, UInt, UInt, Size, Int)
 glVertexAttribFormat = E(
-    'glVertexAttribFormat', None, UInt, Int, UInt, UByte, UInt)
+    'glVertexAttribFormat', None, UInt, Int, UInt, UByte, UInt
+)
 glVertexAttribIFormat = E(
-    'glVertexAttribIFormat', None, UInt, Int, UInt, UInt)
+    'glVertexAttribIFormat', None, UInt, Int, UInt, UInt
+)
 glVertexAttribLFormat = E(
-    'glVertexAttribLFormat', None, UInt, Int, UInt, UInt)
+    'glVertexAttribLFormat', None, UInt, Int, UInt, UInt
+)
 glVertexAttribBinding = E('glVertexAttribBinding', None, UInt, UInt)
 glVertexBindingDivisor = E('glVertexBindingDivisor', None, UInt, UInt)
 glDebugMessageControl = E(
-    'glDebugMessageControl', None, UInt, UInt, UInt, Int, P(UInt), UByte)
+    'glDebugMessageControl', None, UInt, UInt, UInt, Int, P(UInt), UByte
+)
 glDebugMessageInsert = E(
-    'glDebugMessageInsert', None, UInt, UInt, UInt, UInt, Int, CharP)
+    'glDebugMessageInsert', None, UInt, UInt, UInt, UInt, Int, CharP
+)
 glDebugMessageCallback = E('glDebugMessageCallback', None, GLDEBUGPROC, VoidP)
-glGetDebugMessageLog = E('glGetDebugMessageLog', UInt, UInt, Int, P(UInt),
-                         P(UInt), P(UInt), P(UInt), P(Int), CharP)
+glGetDebugMessageLog = E(
+    'glGetDebugMessageLog', UInt, UInt, Int, P(UInt), P(UInt), P(UInt),
+    P(UInt), P(Int), CharP
+)
 glPushDebugGroup = E('glPushDebugGroup', None, UInt, UInt, Int, CharP)
 glPopDebugGroup = E('glPopDebugGroup', None)
 glObjectLabel = E('glObjectLabel', None, UInt, UInt, Int, CharP)
 glGetObjectLabel = E('glGetObjectLabel', None, UInt, UInt, Int, P(Int), CharP)
 glObjectPtrLabel = E('glObjectPtrLabel', None, VoidP, Int, CharP)
 glGetObjectPtrLabel = E(
-    'glGetObjectPtrLabel', None, VoidP, Int, P(Int), CharP)
+    'glGetObjectPtrLabel', None, VoidP, Int, P(Int), CharP
+)
 
 __all__ = [
     'GL_VERSION_4_3', 'GLDEBUGPROC', 'GL_NUM_SHADING_LANGUAGE_VERSIONS',

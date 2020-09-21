@@ -1,4 +1,4 @@
-from .auto_wrap import *
+from gu.system import *
 
 GL_VERSION_4_2 = 1
 GL_COPY_READ_BUFFER_BINDING = 0x8F36
@@ -115,9 +115,11 @@ GL_COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT = 0x8E8F
 GL_TEXTURE_IMMUTABLE_FORMAT = 0x912F
 PFNGLDRAWARRAYSINSTANCEDBASEINSTANCEPROC = C(None, UInt, Int, Int, Int, UInt)
 PFNGLDRAWELEMENTSINSTANCEDBASEINSTANCEPROC = C(
-    None, UInt, Int, UInt, VoidP, Int, UInt)
+    None, UInt, Int, UInt, VoidP, Int, UInt
+)
 PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXBASEINSTANCEPROC = C(
-    None, UInt, Int, UInt, VoidP, Int, Int, UInt)
+    None, UInt, Int, UInt, VoidP, Int, Int, UInt
+)
 PFNGLGETINTERNALFORMATIVPROC = C(None, UInt, UInt, UInt, Int, P(Int))
 PFNGLGETACTIVEATOMICCOUNTERBUFFERIVPROC = C(None, UInt, UInt, UInt, P(Int))
 PFNGLBINDIMAGETEXTUREPROC = C(None, UInt, UInt, Int, UByte, Int, UInt, UInt)
@@ -128,27 +130,35 @@ PFNGLTEXSTORAGE3DPROC = C(None, UInt, Int, UInt, Int, Int, Int)
 PFNGLDRAWTRANSFORMFEEDBACKINSTANCEDPROC = C(None, UInt, UInt, Int)
 PFNGLDRAWTRANSFORMFEEDBACKSTREAMINSTANCEDPROC = C(None, UInt, UInt, UInt, Int)
 glDrawArraysInstancedBaseInstance = E(
-    'glDrawArraysInstancedBaseInstance', None, UInt, Int, Int, Int, UInt)
+    'glDrawArraysInstancedBaseInstance', None, UInt, Int, Int, Int, UInt
+)
 glDrawElementsInstancedBaseInstance = E(
-    'glDrawElementsInstancedBaseInstance',
-    None, UInt, Int, UInt, VoidP, Int, UInt)
+    'glDrawElementsInstancedBaseInstance', None, UInt, Int, UInt, VoidP, Int,
+    UInt
+)
 glDrawElementsInstancedBaseVertexBaseInstance = E(
-    'glDrawElementsInstancedBaseVertexBaseInstance',
-    None, UInt, Int, UInt, VoidP, Int, Int, UInt)
+    'glDrawElementsInstancedBaseVertexBaseInstance', None, UInt, Int, UInt,
+    VoidP, Int, Int, UInt
+)
 glGetInternalformativ = E(
-    'glGetInternalformativ', None, UInt, UInt, UInt, Int, P(Int))
+    'glGetInternalformativ', None, UInt, UInt, UInt, Int, P(Int)
+)
 glGetActiveAtomicCounterBufferiv = E(
-    'glGetActiveAtomicCounterBufferiv', None, UInt, UInt, UInt, P(Int))
+    'glGetActiveAtomicCounterBufferiv', None, UInt, UInt, UInt, P(Int)
+)
 glBindImageTexture = E(
-    'glBindImageTexture', None, UInt, UInt, Int, UByte, Int, UInt, UInt)
+    'glBindImageTexture', None, UInt, UInt, Int, UByte, Int, UInt, UInt
+)
 glMemoryBarrier = E('glMemoryBarrier', None, UInt)
 glTexStorage1D = E('glTexStorage1D', None, UInt, Int, UInt, Int)
 glTexStorage2D = E('glTexStorage2D', None, UInt, Int, UInt, Int, Int)
 glTexStorage3D = E('glTexStorage3D', None, UInt, Int, UInt, Int, Int, Int)
 glDrawTransformFeedbackInstanced = E(
-    'glDrawTransformFeedbackInstanced', None, UInt, UInt, Int)
+    'glDrawTransformFeedbackInstanced', None, UInt, UInt, Int
+)
 glDrawTransformFeedbackStreamInstanced = E(
-    'glDrawTransformFeedbackStreamInstanced', None, UInt, UInt, UInt, Int)
+    'glDrawTransformFeedbackStreamInstanced', None, UInt, UInt, UInt, Int
+)
 
 __all__ = [
     'GL_VERSION_4_2', 'GL_COPY_READ_BUFFER_BINDING',

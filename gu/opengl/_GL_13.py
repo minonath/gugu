@@ -1,4 +1,4 @@
-from .auto_wrap import *
+from gu.system import *
 
 GL_VERSION_1_3 = 1
 GL_TEXTURE0 = 0x84C0
@@ -63,31 +63,45 @@ GL_CLAMP_TO_BORDER = 0x812D
 PFNGLACTIVETEXTUREPROC = C(None, UInt)
 PFNGLSAMPLECOVERAGEPROC = C(None, Float, UByte)
 PFNGLCOMPRESSEDTEXIMAGE3DPROC = C(
-    None, UInt, Int, UInt, Int, Int, Int, Int, Int, VoidP)
+    None, UInt, Int, UInt, Int, Int, Int, Int, Int, VoidP
+)
 PFNGLCOMPRESSEDTEXIMAGE2DPROC = C(
-    None, UInt, Int, UInt, Int, Int, Int, Int, VoidP)
+    None, UInt, Int, UInt, Int, Int, Int, Int, VoidP
+)
 PFNGLCOMPRESSEDTEXIMAGE1DPROC = C(None, UInt, Int, UInt, Int, Int, Int, VoidP)
 PFNGLCOMPRESSEDTEXSUBIMAGE3DPROC = C(
-    None, UInt, Int, Int, Int, Int, Int, Int, Int, UInt, Int, VoidP)
+    None, UInt, Int, Int, Int, Int, Int, Int, Int, UInt, Int, VoidP
+)
 PFNGLCOMPRESSEDTEXSUBIMAGE2DPROC = C(
-    None, UInt, Int, Int, Int, Int, Int, UInt, Int, VoidP)
+    None, UInt, Int, Int, Int, Int, Int, UInt, Int, VoidP
+)
 PFNGLCOMPRESSEDTEXSUBIMAGE1DPROC = C(
-    None, UInt, Int, Int, Int, UInt, Int, VoidP)
+    None, UInt, Int, Int, Int, UInt, Int, VoidP
+)
 PFNGLGETCOMPRESSEDTEXIMAGEPROC = C(None, UInt, Int, VoidP)
 glActiveTexture = E('glActiveTexture', None, UInt)
 glSampleCoverage = E('glSampleCoverage', None, Float, UByte)
-glCompressedTexImage3D = E('glCompressedTexImage3D', None, UInt, Int, UInt,
-                           Int, Int, Int, Int, Int, VoidP)
-glCompressedTexImage2D = E('glCompressedTexImage2D', None, UInt, Int, UInt,
-                           Int, Int, Int, Int, VoidP)
+glCompressedTexImage3D = E(
+    'glCompressedTexImage3D', None, UInt, Int, UInt, Int, Int, Int, Int, Int,
+    VoidP
+)
+glCompressedTexImage2D = E(
+    'glCompressedTexImage2D', None, UInt, Int, UInt, Int, Int, Int, Int, VoidP
+)
 glCompressedTexImage1D = E(
-    'glCompressedTexImage1D', None, UInt, Int, UInt, Int, Int, Int, VoidP)
-glCompressedTexSubImage3D = E('glCompressedTexSubImage3D', None, UInt, Int,
-                              Int, Int, Int, Int, Int, Int, UInt, Int, VoidP)
-glCompressedTexSubImage2D = E('glCompressedTexSubImage2D', None, UInt, Int,
-                              Int, Int, Int, Int, UInt, Int, VoidP)
-glCompressedTexSubImage1D = E('glCompressedTexSubImage1D', None, UInt, Int,
-                              Int, Int, UInt, Int, VoidP)
+    'glCompressedTexImage1D', None, UInt, Int, UInt, Int, Int, Int, VoidP
+)
+glCompressedTexSubImage3D = E(
+    'glCompressedTexSubImage3D', None, UInt, Int, Int, Int, Int, Int, Int,
+    Int, UInt, Int, VoidP
+)
+glCompressedTexSubImage2D = E(
+    'glCompressedTexSubImage2D', None, UInt, Int, Int, Int, Int, Int, UInt,
+    Int, VoidP
+)
+glCompressedTexSubImage1D = E(
+    'glCompressedTexSubImage1D', None, UInt, Int, Int, Int, UInt, Int, VoidP
+)
 glGetCompressedTexImage = E('glGetCompressedTexImage', None, UInt, Int, VoidP)
 
 __all__ = [

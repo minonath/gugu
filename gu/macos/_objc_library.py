@@ -38,7 +38,7 @@ def _objc_method(class_type, get_function, method_name):
 
 
 def _objc_class(name_or_instance, method_name):
-    method_name = method_name.encode('utf-8')
+    _method_name = method_name.encode('utf-8')
     if isinstance(name_or_instance, str):  # 表示这是一个类。
         _class_name = name_or_instance.encode('utf-8')
 
@@ -50,13 +50,13 @@ def _objc_class(name_or_instance, method_name):
                 raise NameError('Class<%s> Not In Runtime.' % _class_name)
             _class_cache[_class_name] = _class_type
 
-        if (_class_name, method_name) in _method_cache:
-            _imp, _sel = _method_cache[_class_name, method_name]
+        if (_class_name, _method_name) in _method_cache:
+            _imp, _sel = _method_cache[_class_name, _method_name]
         else:
             _imp, _sel = _objc_method(
-                _class_type, class_getClassMethod, method_name
+                _class_type, class_getClassMethod, _method_name
             )
-            _method_cache[_class_name, method_name] = _imp, _sel
+            _method_cache[_class_name, _method_name] = _imp, _sel
 
         _first_argument = _class_type
 
@@ -64,13 +64,13 @@ def _objc_class(name_or_instance, method_name):
         _class_type = object_getClass(name_or_instance)
         _class_name = class_getName(_class_type)
 
-        if (_class_name, method_name) in _method_cache:
-            _imp, _sel = _method_cache[_class_name, method_name]
+        if (_class_name, _method_name) in _method_cache:
+            _imp, _sel = _method_cache[_class_name, _method_name]
         else:
             _imp, _sel = _objc_method(
-                _class_type, class_getInstanceMethod, method_name
+                _class_type, class_getInstanceMethod, _method_name
             )
-            _method_cache[_class_name, method_name] = _imp, _sel
+            _method_cache[_class_name, _method_name] = _imp, _sel
 
         _first_argument = name_or_instance
 
@@ -87,9 +87,9 @@ def _objc_run_with_fit(name_or_instance, method_name, *args):
 
     _imp, _first_argument, _sel = _objc_class(name_or_instance, method_name)
     _fitted = (
-        _imp.argtypes[i].auto_fit(a)
-        if isinstance(a, tuple) else a
-        for i, a in enumerate(args, 2)  # 从第三个开始算
+        _imp.argtypes[_i].auto_fit(_a)
+        if isinstance(_a, tuple) else _a
+        for _i, _a in enumerate(args, 2)  # 从第三个开始算
     )
     return _imp(_first_argument, _sel, *_fitted)
 
@@ -103,43 +103,43 @@ def _objc_make_sel(text):
 
 
 def _objc_create_class(class_name, super_name):
-    subclass = objc_getClass(class_name.encode('utf-8'))
-    if class_getName(subclass) != b'nil':  # 重复加载会引发错误。
+    _subclass = objc_getClass(class_name.encode('utf-8'))
+    if class_getName(_subclass) != b'nil':  # 重复加载会引发错误。
         raise NameError('Class<%s> Is Created.' % class_name)
-    superclass = objc_getClass(super_name.encode('utf-8'))
-    subclass = objc_allocateClassPair(
-        superclass, class_name.encode('utf-8'), 0
+    _superclass = objc_getClass(super_name.encode('utf-8'))
+    _subclass = objc_allocateClassPair(
+        _superclass, class_name.encode('utf-8'), 0
     )
-    objc_registerClassPair(subclass)
-    return subclass
+    objc_registerClassPair(_subclass)
+    return _subclass
 
 
 def _objc_bind_method_decorator(class_type, method_name, encoding):
     _class_name = object_getClassName(class_type)
-    method_name = method_name.encode('utf-8')
-    encoding = encoding.encode('utf-8')
+    _method_name = method_name.encode('utf-8')
+    _encoding = encoding.encode('utf-8')
 
-    _method_sel = sel_registerName(method_name)
-    _return_type, _argument_types = objc_type_from_encoding(encoding)
+    _method_sel = sel_registerName(_method_name)
+    _return_type, _argument_types = objc_type_from_encoding(_encoding)
     _c_function = ctypes.CFUNCTYPE(_return_type, *_argument_types)
 
-    def _bind(_function):
-        _method_cache[_class_name, method_name] = k = _c_function(_function)
-        class_addMethod(class_type, _method_sel, k, encoding)
-        return _function
+    def _bind(function):
+        _method_cache[_class_name, _method_name] = _k = _c_function(function)
+        class_addMethod(class_type, _method_sel, _k, _encoding)
+        return function
 
     return _bind
 
 
 def _objc_find_type_encoding(*type_name):
-    type_name = tuple(t.encode('utf-8') for t in type_name)
-    for name in objc_encodings.keys():
-        if name.startswith(b'{'):
-            real_name = name[1:name.find(b'=')]
-            if real_name in type_name:
-                real_type = objc_encodings[name]
-                return (name.decode('utf-8'), real_type,
-                        ctypes.sizeof(real_type))
+    _type_name = tuple(_t.encode('utf-8') for _t in type_name)
+    for _name in objc_encodings.keys():
+        if _name.startswith(b'{'):
+            _real_name = _name[1:_name.find(b'=')]
+            if _real_name in _type_name:
+                _real_type = objc_encodings[_name]
+                return (_name.decode('utf-8'), _real_type,
+                        ctypes.sizeof(_real_type))
 
 
 OBJC = _objc_run

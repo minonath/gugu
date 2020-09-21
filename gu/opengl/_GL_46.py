@@ -1,4 +1,4 @@
-from .auto_wrap import *
+from gu.system import *
 
 GL_VERSION_4_6 = 1
 GL_SHADER_BINARY_FORMAT_SPIR_V = 0x9551
@@ -26,14 +26,19 @@ GL_TRANSFORM_FEEDBACK_STREAM_OVERFLOW = 0x82ED
 PFNGLSPECIALIZESHADERPROC = C(None, UInt, CharP, UInt, P(UInt), P(UInt))
 PFNGLMULTIDRAWARRAYSINDIRECTCOUNTPROC = C(None, UInt, VoidP, Size, Int, Int)
 PFNGLMULTIDRAWELEMENTSINDIRECTCOUNTPROC = C(
-    None, UInt, UInt, VoidP, Size, Int, Int)
+    None, UInt, UInt, VoidP, Size, Int, Int
+)
 PFNGLPOLYGONOFFSETCLAMPPROC = C(None, Float, Float, Float)
 glSpecializeShader = E(
-    'glSpecializeShader', None, UInt, CharP, UInt, P(UInt), P(UInt))
+    'glSpecializeShader', None, UInt, CharP, UInt, P(UInt), P(UInt)
+)
 glMultiDrawArraysIndirectCount = E(
-    'glMultiDrawArraysIndirectCount', None, UInt, VoidP, Size, Int, Int)
-glMultiDrawElementsIndirectCount = E('glMultiDrawElementsIndirectCount', None,
-                                     UInt, UInt, VoidP, Size, Int, Int)
+    'glMultiDrawArraysIndirectCount', None, UInt, VoidP, Size, Int, Int
+)
+glMultiDrawElementsIndirectCount = E(
+    'glMultiDrawElementsIndirectCount', None, UInt, UInt, VoidP, Size, Int,
+    Int
+)
 glPolygonOffsetClamp = E('glPolygonOffsetClamp', None, Float, Float, Float)
 
 __all__ = [

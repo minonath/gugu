@@ -1,4 +1,4 @@
-from .auto_wrap import *
+from gu.system import *
 
 GL_VERSION_3_3 = 1
 GL_VERTEX_ATTRIB_ARRAY_DIVISOR = 0x88FE
@@ -46,7 +46,8 @@ PFNGLVERTEXATTRIBP3UIVPROC = C(None, UInt, UInt, UByte, P(UInt))
 PFNGLVERTEXATTRIBP4UIPROC = C(None, UInt, UInt, UByte, UInt)
 PFNGLVERTEXATTRIBP4UIVPROC = C(None, UInt, UInt, UByte, P(UInt))
 glBindFragDataLocationIndexed = E(
-    'glBindFragDataLocationIndexed', None, UInt, UInt, UInt, CharP)
+    'glBindFragDataLocationIndexed', None, UInt, UInt, UInt, CharP
+)
 glGetFragDataIndex = E('glGetFragDataIndex', Int, UInt, CharP)
 glGenSamplers = E('glGenSamplers', None, Int, P(UInt))
 glDeleteSamplers = E('glDeleteSamplers', None, Int, P(UInt))
@@ -58,32 +59,42 @@ glSamplerParameterf = E('glSamplerParameterf', None, UInt, UInt, Float)
 glSamplerParameterfv = E('glSamplerParameterfv', None, UInt, UInt, P(Float))
 glSamplerParameterIiv = E('glSamplerParameterIiv', None, UInt, UInt, P(Int))
 glSamplerParameterIuiv = E(
-    'glSamplerParameterIuiv', None, UInt, UInt, P(UInt))
+    'glSamplerParameterIuiv', None, UInt, UInt, P(UInt)
+)
 glGetSamplerParameteriv = E(
-    'glGetSamplerParameteriv', None, UInt, UInt, P(Int))
+    'glGetSamplerParameteriv', None, UInt, UInt, P(Int)
+)
 glGetSamplerParameterIiv = E(
-    'glGetSamplerParameterIiv', None, UInt, UInt, P(Int))
+    'glGetSamplerParameterIiv', None, UInt, UInt, P(Int)
+)
 glGetSamplerParameterfv = E(
-    'glGetSamplerParameterfv', None, UInt, UInt, P(Float))
+    'glGetSamplerParameterfv', None, UInt, UInt, P(Float)
+)
 glGetSamplerParameterIuiv = E(
-    'glGetSamplerParameterIuiv', None, UInt, UInt, P(UInt))
+    'glGetSamplerParameterIuiv', None, UInt, UInt, P(UInt)
+)
 glQueryCounter = E('glQueryCounter', None, UInt, UInt)
 glGetQueryObjecti64v = E('glGetQueryObjecti64v', None, UInt, UInt, P(Int64))
 glGetQueryObjectui64v = E(
-    'glGetQueryObjectui64v', None, UInt, UInt, P(UInt64))
+    'glGetQueryObjectui64v', None, UInt, UInt, P(UInt64)
+)
 glVertexAttribDivisor = E('glVertexAttribDivisor', None, UInt, UInt)
 glVertexAttribP1ui = E('glVertexAttribP1ui', None, UInt, UInt, UByte, UInt)
 glVertexAttribP1uiv = E(
-    'glVertexAttribP1uiv', None, UInt, UInt, UByte, P(UInt))
+    'glVertexAttribP1uiv', None, UInt, UInt, UByte, P(UInt)
+)
 glVertexAttribP2ui = E('glVertexAttribP2ui', None, UInt, UInt, UByte, UInt)
 glVertexAttribP2uiv = E(
-    'glVertexAttribP2uiv', None, UInt, UInt, UByte, P(UInt))
+    'glVertexAttribP2uiv', None, UInt, UInt, UByte, P(UInt)
+)
 glVertexAttribP3ui = E('glVertexAttribP3ui', None, UInt, UInt, UByte, UInt)
 glVertexAttribP3uiv = E(
-    'glVertexAttribP3uiv', None, UInt, UInt, UByte, P(UInt))
+    'glVertexAttribP3uiv', None, UInt, UInt, UByte, P(UInt)
+)
 glVertexAttribP4ui = E('glVertexAttribP4ui', None, UInt, UInt, UByte, UInt)
 glVertexAttribP4uiv = E(
-    'glVertexAttribP4uiv', None, UInt, UInt, UByte, P(UInt))
+    'glVertexAttribP4uiv', None, UInt, UInt, UByte, P(UInt)
+)
 
 __all__ = [
     'GL_VERSION_3_3', 'GL_VERTEX_ATTRIB_ARRAY_DIVISOR', 'GL_SRC1_COLOR',

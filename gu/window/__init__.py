@@ -1,10 +1,9 @@
-from .base_window import window_input, gl_context
 from ..system import SYSTEM_PLATFORM
 
 if SYSTEM_PLATFORM == 1:
     raise NotImplementedError
 elif SYSTEM_PLATFORM == 2:
-    from .mac_window import Window
+    from ._mac_window import Window
     # from .mac_font import Font
 else:
     raise NotImplementedError

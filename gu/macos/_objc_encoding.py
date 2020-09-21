@@ -108,21 +108,21 @@ def _objc_split_encoding(encoding: bytes) -> typing.Generator:
 
 def _objc_get_type(encoding):
     """ 通过 Objective-C 类型文本获取 ctypes 的类型。 """
-    encoding = encoding.lstrip(b'VrRnNoO')  # 这几个字符是标记字符，和类型无关。
+    _encoding = encoding.lstrip(b'VrRnNoO')  # 这几个字符是标记字符，和类型无关。
 
-    if encoding in objc_encodings:
-        return objc_encodings[encoding]
+    if _encoding in objc_encodings:
+        return objc_encodings[_encoding]
 
-    if encoding.startswith(b'^'):
-        _type = ctypes.POINTER(_objc_get_type(encoding[1:]))  # 递归调用。
+    if _encoding.startswith(b'^'):
+        _type = ctypes.POINTER(_objc_get_type(_encoding[1:]))  # 递归调用。
 
-    elif encoding.startswith(b'('):  # 这是一个联合体。
-        _type = _objc_make_type(encoding[1:-1], ctypes.Union)
+    elif _encoding.startswith(b'('):  # 这是一个联合体。
+        _type = _objc_make_type(_encoding[1:-1], ctypes.Union)
 
-    elif encoding.startswith(b'['):  # 这是一个数组，现场制作一个 ctypes.Array。
+    elif _encoding.startswith(b'['):  # 这是一个数组，现场制作一个 ctypes.Array。
         _num, _sub = [], []
 
-        for _b in encoding[1:-1]:
+        for _b in _encoding[1:-1]:
             if _b in b'0123456789':
                 _num.append(_b)  # 获取长度。
             else:
@@ -131,13 +131,13 @@ def _objc_get_type(encoding):
         _type = _objc_get_type(bytes(_sub)) * int(bytes(_num))
         _type.auto_fit = lambda _input: _type(*_input)  # auto_fit 自动填充。
 
-    elif encoding.startswith(b'{'):  # 这是一个结构体。
-        _type = _objc_make_type(encoding[1:-1], ctypes.Structure)
+    elif _encoding.startswith(b'{'):  # 这是一个结构体。
+        _type = _objc_make_type(_encoding[1:-1], ctypes.Structure)
 
     else:
         _type = None  # 如果不是指针的话，None 会报错。
 
-    objc_encodings[encoding] = _type  # 记录该类型，下次调用可以节省速度。
+    objc_encodings[_encoding] = _type  # 记录该类型，下次调用可以节省速度。
     return _type
 
 

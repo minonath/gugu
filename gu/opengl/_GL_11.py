@@ -1,4 +1,4 @@
-from .auto_wrap import *
+from gu.system import *
 
 GL_VERSION_1_1 = 1
 GL_COLOR_LOGIC_OP = 0x0BF2
@@ -42,7 +42,8 @@ PFNGLCOPYTEXSUBIMAGE1DPROC = C(None, UInt, Int, Int, Int, Int, Int)
 PFNGLCOPYTEXSUBIMAGE2DPROC = C(None, UInt, Int, Int, Int, Int, Int, Int, Int)
 PFNGLTEXSUBIMAGE1DPROC = C(None, UInt, Int, Int, Int, UInt, UInt, VoidP)
 PFNGLTEXSUBIMAGE2DPROC = C(
-    None, UInt, Int, Int, Int, Int, Int, UInt, UInt, VoidP)
+    None, UInt, Int, Int, Int, Int, Int, UInt, UInt, VoidP
+)
 PFNGLBINDTEXTUREPROC = C(None, UInt, UInt)
 PFNGLDELETETEXTURESPROC = C(None, Int, P(UInt))
 PFNGLGENTEXTURESPROC = C(None, Int, P(UInt))
@@ -52,17 +53,23 @@ glDrawElements = E('glDrawElements', None, UInt, Int, UInt, VoidP)
 glGetPointerv = E('glGetPointerv', None, UInt, P(VoidP))
 glPolygonOffset = E('glPolygonOffset', None, Float, Float)
 glCopyTexImage1D = E(
-    'glCopyTexImage1D', None, UInt, Int, UInt, Int, Int, Int, Int)
+    'glCopyTexImage1D', None, UInt, Int, UInt, Int, Int, Int, Int
+)
 glCopyTexImage2D = E(
-    'glCopyTexImage2D', None, UInt, Int, UInt, Int, Int, Int, Int, Int)
+    'glCopyTexImage2D', None, UInt, Int, UInt, Int, Int, Int, Int, Int
+)
 glCopyTexSubImage1D = E(
-    'glCopyTexSubImage1D', None, UInt, Int, Int, Int, Int, Int)
+    'glCopyTexSubImage1D', None, UInt, Int, Int, Int, Int, Int
+)
 glCopyTexSubImage2D = E(
-    'glCopyTexSubImage2D', None, UInt, Int, Int, Int, Int, Int, Int, Int)
+    'glCopyTexSubImage2D', None, UInt, Int, Int, Int, Int, Int, Int, Int
+)
 glTexSubImage1D = E(
-    'glTexSubImage1D', None, UInt, Int, Int, Int, UInt, UInt, VoidP)
+    'glTexSubImage1D', None, UInt, Int, Int, Int, UInt, UInt, VoidP
+)
 glTexSubImage2D = E(
-    'glTexSubImage2D', None, UInt, Int, Int, Int, Int, Int, UInt, UInt, VoidP)
+    'glTexSubImage2D', None, UInt, Int, Int, Int, Int, Int, UInt, UInt, VoidP
+)
 glBindTexture = E('glBindTexture', None, UInt, UInt)
 glDeleteTextures = E('glDeleteTextures', None, Int, P(UInt))
 glGenTextures = E('glGenTextures', None, Int, P(UInt))

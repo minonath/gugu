@@ -1,4 +1,4 @@
-from .auto_wrap import *
+from gu.system import *
 
 GL_VERSION_1_2 = 1
 GL_UNSIGNED_BYTE_3_3_2 = 0x8032
@@ -39,19 +39,28 @@ GL_SMOOTH_LINE_WIDTH_GRANULARITY = 0x0B23
 GL_ALIASED_LINE_WIDTH_RANGE = 0x846E
 PFNGLDRAWRANGEELEMENTSPROC = C(None, UInt, UInt, UInt, Int, UInt, VoidP)
 PFNGLTEXIMAGE3DPROC = C(
-    None, UInt, Int, Int, Int, Int, Int, Int, UInt, UInt, VoidP)
+    None, UInt, Int, Int, Int, Int, Int, Int, UInt, UInt, VoidP
+)
 PFNGLTEXSUBIMAGE3DPROC = C(
-    None, UInt, Int, Int, Int, Int, Int, Int, Int, UInt, UInt, VoidP)
+    None, UInt, Int, Int, Int, Int, Int, Int, Int, UInt, UInt, VoidP
+)
 PFNGLCOPYTEXSUBIMAGE3DPROC = C(
-    None, UInt, Int, Int, Int, Int, Int, Int, Int, Int)
+    None, UInt, Int, Int, Int, Int, Int, Int, Int, Int
+)
 glDrawRangeElements = E(
-    'glDrawRangeElements', None, UInt, UInt, UInt, Int, UInt, VoidP)
-glTexImage3D = E('glTexImage3D', None, UInt, Int, Int, Int, Int, Int, Int,
-                 UInt, UInt, VoidP)
-glTexSubImage3D = E('glTexSubImage3D', None, UInt, Int, Int, Int, Int, Int,
-                    Int, Int, UInt, UInt, VoidP)
+    'glDrawRangeElements', None, UInt, UInt, UInt, Int, UInt, VoidP
+)
+glTexImage3D = E(
+    'glTexImage3D', None, UInt, Int, Int, Int, Int, Int, Int, UInt, UInt,
+    VoidP
+)
+glTexSubImage3D = E(
+    'glTexSubImage3D', None, UInt, Int, Int, Int, Int, Int, Int, Int, UInt,
+    UInt, VoidP
+)
 glCopyTexSubImage3D = E(
-    'glCopyTexSubImage3D', None, UInt, Int, Int, Int, Int, Int, Int, Int, Int)
+    'glCopyTexSubImage3D', None, UInt, Int, Int, Int, Int, Int, Int, Int, Int
+)
 
 __all__ = [
     'GL_VERSION_1_2', 'GL_UNSIGNED_BYTE_3_3_2', 'GL_UNSIGNED_SHORT_4_4_4_4',
